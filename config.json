@@ -1,0 +1,13 @@
+{
+    "firebase": {
+        "apiKey": "AIzaSyC-BNpL0T0vSKEcs_-DbOXuc584SsbTsaU",
+        "authDomain": "lotus-299a6.firebaseapp.com",
+        "projectId": "lotus-299a6",
+        "storageBucket": "lotus-299a6.appspot.com",
+        "messagingSenderId": "894591957476",
+        "appId": "1:894591957476:web:c96ccf56da907329a86ff1",
+        "measurementId": "G-G9MHYLRRXQ"
+
+    },
+    "baseUrl": "http://localhost:8080/"
+}

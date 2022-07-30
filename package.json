@@ -11,7 +11,14 @@
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "firebase": "^8.10.1",
+    "axios": "^0.21.1",
+    "bootstrap-vue": "^2.21.2",
+    "vue-feather": "^1.1.1",
+    "feather-icons": "^4.28.0",
+    "vue-apexcharts": "^1.6.0",
+    "apexcharts": "^3.23.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.7",

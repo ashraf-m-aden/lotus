@@ -1,0 +1,65 @@
+{
+    "data": [{
+            "title": "Dashboard",
+            "icon": "home",
+            "type": "sub",
+            "badgeType": "primary",
+            "active": false
+        },
+        {
+            "title": "Doctors",
+            "icon": "user-plus",
+            "type": "sub",
+            "active": false,
+            "children": [{
+                    "path": "/doctors/doctor-list",
+                    "title": "Doctors List",
+                    "type": "link"
+                },
+                {
+                    "path": "/doctors/create-doctor",
+                    "title": "Create Doctor",
+                    "type": "link"
+                }
+            ]
+        },
+
+
+        {
+            "title": "Patient",
+            "icon": "user-plus",
+            "type": "sub",
+            "active": false,
+            "children": [{
+                    "path": "/patients/patient-list",
+                    "title": "Patient List",
+                    "type": "link"
+                },
+                {
+                    "path": "/patients/create-patient",
+                    "title": "Create Patient",
+                    "type": "link"
+                }
+            ]
+        },
+
+        {
+            "path": "/app/reports",
+            "title": "Reports",
+            "icon": "bar-chart",
+            "type": "link",
+            "bookmark": true
+        },
+        {
+            "title": "Settings",
+            "icon": "settings",
+            "type": "sub",
+            "active": false,
+            "children": [{
+                "path": "/settings/profile",
+                "title": "Profile",
+                "type": "link"
+            }]
+        }
+    ]
+}

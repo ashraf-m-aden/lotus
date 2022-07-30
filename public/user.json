@@ -1,0 +1,161 @@
+{
+    "data": [{
+            "delete": "",
+            "id": 1,
+            "name": "Rowan",
+            "lastName": "Torres",
+            "email": "Rowan.torres@gmail.com",
+            "images": "user1.jpg",
+            "role": "Customer",
+            "office": "Edinburgh",
+            "age": 61,
+            "startdate": "2011/04/25",
+            "salary": "$320,800",
+            "lastLogin": "6 Days ago",
+            "skillLevel": "50%"
+
+        },
+        {
+            "delete": "",
+            "id": 2,
+            "name": "Alonzo",
+            "lastName": "Perez",
+            "role": "Customer",
+            "images": "user2.jpg",
+            "office": "Tokyo",
+            "age": 63,
+            "startdate": "2011/07/25",
+            "salary": "$170,750",
+            "lastLogin": "2 Days ago",
+            "skillLevel": "40%",
+            "email": "Perez.Alonzo@gmail.com"
+        },
+        {
+            "delete": "",
+            "id": 3,
+            "images": "user3.jpg",
+            "name": "Skylar",
+            "lastName": "Lane",
+            "role": "Customer",
+            "office": "San Francisco",
+            "age": 66,
+            "startdate": "2009/01/12",
+            "salary": "$86,000",
+            "lastLogin": "1 Days ago",
+            "skillLevel": "60%",
+            "email": "Lane.Skylar@gmail.com"
+        },
+        {
+            "delete": "",
+            "id": 4,
+            "images": "user4.jpg",
+            "name": "Brody",
+            "lastName": "Gray",
+            "role": "Admin",
+            "office": "Edinburgh",
+            "age": 22,
+            "startdate": "2012/03/29",
+            "salary": "$433,060",
+            "lastLogin": "4 Days ago",
+            "skillLevel": "70%",
+            "email": "Gray.Brody@gmail.com"
+        },
+        {
+            "delete": "",
+            "id": 5,
+            "images": "user5.jpg",
+            "name": "Colton",
+            "lastName": "Clay",
+            "role": "Customer",
+            "office": "Tokyo",
+            "age": 33,
+            "startdate": "2008/11/28",
+            "salary": "$162,700",
+            "lastLogin": "1 Days ago",
+            "skillLevel": "30%",
+            "email": "Colton.Clay@gmail.com"
+
+        },
+        {
+            "delete": "",
+            "id": 6,
+            "images": "user1.jpg",
+            "name": "Maxine",
+            "lastName": "Woters",
+            "role": "Customer",
+            "office": "New York",
+            "age": 61,
+            "startdate": "2012/12/02",
+            "salary": "$372,000",
+            "lastLogin": "10 Days ago",
+            "skillLevel": "50%",
+            "email": "woters.maxine@gmail.com"
+
+        },
+        {
+            "delete": "",
+            "id": 7,
+            "images": "user2.jpg",
+            "name": "Alonzo",
+            "lastName": "Perez",
+            "role": "Customer",
+            "office": "San Francisco",
+            "age": 59,
+            "startdate": "2012/08/06",
+            "salary": "$137,500",
+            "lastLogin": "2 Days ago",
+            "skillLevel": "20%",
+            "email": "Perez.Alonzo@gmail.com"
+
+
+        },
+        {
+            "delete": "",
+            "id": 8,
+            "images": "user3.jpg",
+            "name": "Skylar",
+            "lastName": "Lane",
+            "role": "Customer",
+            "office": "Tokyo",
+            "age": 55,
+            "startdate": "2010/10/14",
+            "salary": "$327,900",
+            "lastLogin": "1 Days ago",
+            "skillLevel": "80%",
+            "email": "Lane.Skylar@gmail.com"
+
+
+        },
+        {
+            "delete": "",
+            "id": 9,
+            "images": "user4.jpg",
+            "name": "Brody",
+            "lastName": "Gray",
+            "role": "Customer",
+            "office": "San Francisco",
+            "age": 39,
+            "startdate": "2009/09/15",
+            "salary": "$205,500",
+            "lastLogin": "3 Days ago",
+            "skillLevel": "30%",
+            "email": "Gray.Brody@gmail.com"
+        },
+        {
+            "delete": "",
+            "id": 10,
+            "images": "user5.jpg",
+            "name": "Colton",
+            "lastName": "Clay",
+            "role": "Admin",
+            "office": "Edinburgh",
+            "age": 23,
+            "startdate": "2008/12/13",
+            "salary": "$103,600",
+            "lastLogin": "1 Days ago",
+            "skillLevel": "90%",
+            "email": "Colton.Clay@gmail.com"
+
+        }
+    ]
+}
