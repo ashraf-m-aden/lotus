@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Body from '../components/Body.vue';
-
+import firebase from 'firebase/app';
+import Auth from '../pages/authentication/index.vue';
+import Userauth from '../auth/index.js'
 Vue.use(VueRouter)
 
 const routes = [
@@ -71,7 +73,7 @@ const routes = [
       }
     },
     {
-      path: 'patient-profile',
+      path: 'patient-profile/:id',
       name: 'patient-profile',
       component: () => import(/* webpackChunkName: "about" */ '../pages/patients/patient-profil.vue'),
       meta: {
@@ -80,15 +82,21 @@ const routes = [
       }
     }
     ]
-  }
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    meta: {
+      title: 'Page de connexion | Lotus',
+
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../pages/authentication/index.vue')
+  },
+  { path: '**', redirect: { name: 'dashboard' } },
+
 ]
 
 const router = new VueRouter({
@@ -97,4 +105,16 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  firebase.auth().onAuthStateChanged(() => {
+    if (to.meta.title) {
+      document.title = to.meta.title
+    }
+    const CurrentUser = firebase.auth().currentUser;
+    if (to.path === "/login" || CurrentUser || Userauth.isAuthenticatedUser()) {
+      return next();
+    }
+    next('/login')
+  });
+});
 export default router

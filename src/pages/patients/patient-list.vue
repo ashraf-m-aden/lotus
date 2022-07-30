@@ -63,7 +63,11 @@
                       v-model="item[key]"
                       @change="deleteSelected(item)"
                     ></b-checkbox> -->
-                    <a href="#"> Consulter</a>
+                    <a>
+                      <router-link :to="'/patients/patient-profile/' + item.id"
+                        >Consulter</router-link
+                      ></a
+                    >
                   </template>
                 </b-table>
               </div>

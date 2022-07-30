@@ -90,7 +90,7 @@ export default {
       type: "password",
       username: "test@admin.com",
       password: "test@123456",
-      submitted: false
+      submitted: false,
     };
   },
   created() {
@@ -108,14 +108,14 @@ export default {
       } else {
         let data = {
           username: this.username,
-          password: this.password
+          password: this.password,
         };
 
         firebase
           .auth()
           .signInWithEmailAndPassword(data.username, data.password)
           .then(
-            result => {
+            (result) => {
               Userauth.localLogin(result);
               if (result.user.refreshToken) {
                 localStorage.setItem(
@@ -123,27 +123,27 @@ export default {
                   JSON.stringify(result.user.refreshToken)
                 );
               }
-            //  this.$toasted.show("succesfully loged in", {
-            //    theme: "bubble",
-            //    position: "top-right",
-            //    type: "success",
-            //    duration: 2000
-            //  });
+              this.$toasted.show("Connecté avec succés", {
+                theme: "bubble",
+                position: "top-right",
+                type: "success",
+                duration: 2000,
+              });
               this.$router.push("/");
             },
-            err => {
+            (err) => {
               this.username = "test@admin.com";
               this.password = "test@123456";
               this.$toasted.show("Oops..." + err.message, {
                 theme: "bubble",
                 position: "bottom-right",
                 type: "error",
-                duration: 2000
+                duration: 2000,
               });
             }
           );
       }
-    }
-  }
+    },
+  },
 };
 </script>

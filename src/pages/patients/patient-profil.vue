@@ -259,7 +259,7 @@
                   </b-tab>
                   <b-tab>
                     <template slot="title">
-                      <feather type="clock"></feather>Documents
+                      <feather type="paperclip"></feather>Fichiers
                     </template>
                     <div
                       class="tab-pane fade show active"
@@ -267,20 +267,7 @@
                       role="tabpanel"
                       aria-labelledby="top-profile-tab"
                     >
-                      <div>
-                        <b-card
-                          title="Echographie du 7eme mois"
-                          sub-title="25/02/2022"
-                        >
-                          <div class="card">
-                            <img
-                              class="card-img-top"
-                              src="../../assets/images/echo.jpg"
-                              alt=""
-                            />
-                          </div>
-                        </b-card>
-                      </div>
+                      <media></media>
                     </div>
                   </b-tab>
                   <b-tab>
@@ -350,11 +337,15 @@
 </template>
 
 <script>
+import media from "@/components/media.vue";
 export default {
   data() {
     return {
       content: "",
     };
+  },
+  components: {
+    media,
   },
   methods: {
     onComplete() {},

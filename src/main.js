@@ -14,6 +14,15 @@ import config from '../config.json'
 import VueApexCharts from 'vue-apexcharts';
 import './assets/scss/app.scss'
 import './assets/scss/admin.scss'
+import {
+  ValidationObserver,
+  ValidationProvider,
+
+} from "vee-validate";
+import Toasted from 'vue-toasted';
+import { VueEditor } from "vue2-editor";
+import VueDropzone from 'vue2-dropzone';
+import "vue2-dropzone/dist/vue2Dropzone.min.css";
 
 Vue.component('Breadcrumbs', Breadcrumbs);
 Vue.use(VueFeather);
@@ -21,10 +30,16 @@ Vue.component(PxCard.name, PxCard)
 Vue.use(VueApexCharts)
 Vue.component('apexchart', VueApexCharts)
 firebase.initializeApp(config.firebase);
-
-
+Vue.component("ValidationObserver", ValidationObserver);
+Vue.component("ValidationProvider", ValidationProvider);
+Vue.use(Toasted, {
+  iconPack: 'fontawesome'
+});
 Vue.config.productionTip = false
-
+Vue.component('VueEditor', VueEditor);
+Vue.component('VueDropzone', VueDropzone);
+Vue.use(VueDropzone);
+Vue.use(VueEditor);
 
 Vue.use(BootstrapVue);
 

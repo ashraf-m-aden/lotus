@@ -18,7 +18,11 @@
     "vue-feather": "^1.1.1",
     "feather-icons": "^4.28.0",
     "vue-apexcharts": "^1.6.0",
-    "apexcharts": "^3.23.1"
+    "apexcharts": "^3.23.1",
+    "vee-validate": "^3.4.5",
+    "vue-toasted": "^1.1.28",
+    "vue2-editor": "^2.10.2",
+    "vue2-dropzone": "^3.6.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.7",
