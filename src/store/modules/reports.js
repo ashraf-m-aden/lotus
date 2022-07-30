@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from '../../../config.json'
 const ax = axios.create({
-    baseURL: config.baseUrl,
+    baseURL: process.env.BASE_URL,
 });
 const url = 'transfer.json';
 

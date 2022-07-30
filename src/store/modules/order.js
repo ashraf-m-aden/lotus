@@ -3,7 +3,7 @@ import order from '../../data/order.json';
 
 import config from '../../../config.json'
 const ax = axios.create({
-    baseURL: config.baseUrl,
+    baseURL: process.env.BASE_URL,
 });
 const url = 'order.json';
 const transactionUrl = 'transactions.json';
