@@ -262,7 +262,7 @@
               <div class="single-item">
                 <div>
                   <div>
-                    <h3>Welcome to Lotus</h3>
+                    <h3>Welcome to Oula Xassuus</h3>
                   </div>
                 </div>
               </div>

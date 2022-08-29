@@ -5,7 +5,7 @@
         <div class="page-header-left">
           <h3>
             {{ title }}
-            <small>Lotus</small>
+            <small>Oula Xassuus</small>
           </h3>
         </div>
       </div>

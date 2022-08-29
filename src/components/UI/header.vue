@@ -48,7 +48,7 @@
                       <span
                         ><i class="shopping-color" data-feather="shopping-bag"
                           ><feather type="shopping-bag"></feather></i></span
-                      >Your order ready for Ship..!
+                      >Notification 
                     </h6>
                     <p class="mb-0">
                       Lorem ipsum dolor sit amet, consectetuer.
@@ -65,7 +65,7 @@
                           class="download-color font-success"
                           data-feather="download"
                           ><feather type="download"></feather></i></span
-                      >Download Complete
+                      >Notification
                     </h6>
                     <p class="mb-0">
                       Lorem ipsum dolor sit amet, consectetuer.
@@ -82,7 +82,7 @@
                           class="alert-color font-danger"
                           data-feather="alert-circle"
                           ><feather type="alert-circle"></feather></i></span
-                      >250 MB trash files
+                      >Notification
                     </h6>
                     <p class="mb-0">
                       Lorem ipsum dolor sit amet, consectetuer.

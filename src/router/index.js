@@ -8,8 +8,8 @@ Vue.use(VueRouter)
 
 const routes = [
 
-  { path: '', redirect: { name: 'dashboard' } },
-  { path: '/', redirect: { name: 'dashboard' } },
+  { path: '', redirect: { name: 'patient-list' } },
+  { path: '/', redirect: { name: 'patient-list' } },
   {
     path: '/dashboard',
     component: Body,
@@ -20,9 +20,9 @@ const routes = [
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ '../pages/dashboard.vue'),
+      component: () => import(/* webpackChunkName: "about" */ '../pages/patients/patient-list.vue'),
       meta: {
-        title: 'Lotus',
+        title: 'Oula Xassuus',
       }
     }]
   },
@@ -35,7 +35,7 @@ const routes = [
       name: 'doctor-list',
       component: () => import(/* webpackChunkName: "about" */ '../pages/doctors/doctor-list.vue'),
       meta: {
-        title: 'Liste des docteurs | Lotus',
+        title: 'Liste des docteurs | Oula Xassuus',
 
       }
     },
@@ -44,7 +44,7 @@ const routes = [
       name: 'create-doctor',
       component: () => import(/* webpackChunkName: "about" */ '../pages/doctors/create-doctor.vue'),
       meta: {
-        title: 'Ajouter un docteur | Lotus',
+        title: 'Ajouter un docteur | Oula Xassuus',
 
       }
     }
@@ -59,7 +59,7 @@ const routes = [
       name: 'patient-list',
       component: () => import(/* webpackChunkName: "about" */ '../pages/patients/patient-list.vue'),
       meta: {
-        title: 'Liste des patients | Lotus',
+        title: 'Liste des patients | Oula Xassuus',
 
       }
     },
@@ -68,7 +68,7 @@ const routes = [
       name: 'create-patient',
       component: () => import(/* webpackChunkName: "about" */ '../pages/patients/create-patient.vue'),
       meta: {
-        title: 'Ajouter un patient | Lotus',
+        title: 'Ajouter un patient | Oula Xassuus',
 
       }
     },
@@ -77,7 +77,7 @@ const routes = [
       name: 'patient-profile',
       component: () => import(/* webpackChunkName: "about" */ '../pages/patients/patient-profil.vue'),
       meta: {
-        title: 'Profil de la patiente | Lotus',
+        title: 'Profil de la patiente | Oula Xassuus',
 
       }
     }
@@ -87,7 +87,7 @@ const routes = [
     path: '/login',
     name: 'Login',
     meta: {
-      title: 'Page de connexion | Lotus',
+      title: 'Page de connexion | Oula Xassuus',
 
     },
     // route level code-splitting
