@@ -22,8 +22,8 @@
               alt="#"
             />
           </div>
-          <h6 class="mt-3 f-14">JOHN</h6>
-          <p>general manager.</p>
+          <h6 class="mt-3 f-14">Fatouma Mohamed</h6>
+          <p>Administrateur</p>
         </div>
         <ul class="sidebar-menu" id="myDIV">
           <li
