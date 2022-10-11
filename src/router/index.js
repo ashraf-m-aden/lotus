@@ -29,6 +29,8 @@ const routes = [
     path: '/doctors',
     name: 'doctors',
     component: Body,
+    redirect: { name: 'patient-list' },
+
     children: [{
       path: 'doctor-list',
       name: 'doctor-list',
@@ -53,6 +55,8 @@ const routes = [
     path: '/patients',
     name: 'patients',
     component: Body,
+    redirect: { name: 'patient-list' },
+
     children: [{
       path: 'patient-list',
       name: 'patient-list',
@@ -93,6 +97,22 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../pages/authentication/index.vue')
+  },
+  {
+    path: '/profil',
+    name: 'Profil',
+    component: Body,
+    redirect: { name: 'patient-list' },
+
+    children: [{
+      path: 'mon-profil',
+      name: 'Mon profil',
+      component: () => import(/* webpackChunkName: "about" */ '../pages/profiles/profile.vue'),
+      meta: {
+        title: 'Mon profil | Lotus',
+
+      }
+    }]
   },
   { path: '**', redirect: { name: 'patient-list' } },
   { path: '/', redirect: { name: 'patient-list' } },

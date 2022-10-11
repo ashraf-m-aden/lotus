@@ -10,8 +10,8 @@
 
 <script>
 export default {
-  beforeCreate() {
-    this.$store.dispatch('checkAuth')
+  async beforeCreate() {
+    await this.$store.dispatch('checkAuth')
       ;
   },
 }

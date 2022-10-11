@@ -1,6 +1,7 @@
 import EventEmitter from 'events';
 const isloggedIn = 'isLoggedIn';
 import { db, fb } from '../../db';
+import store from '../store';
 
 class Auth extends EventEmitter {
     authToken = null
@@ -47,7 +48,14 @@ class Auth extends EventEmitter {
         return db.collection('users').doc(userId).get();
     }
 
+    updateUser(userId, update) {
+        return db.collection('users').doc(userId).update(update);
 
+    }
+    updatePassword(email) {
+        return fb.auth().sendPasswordResetEmail(email);
+
+    }
 
 }
 

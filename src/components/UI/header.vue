@@ -90,14 +90,14 @@
             </div>
             <ul class="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
               <li>
-                <a>
-                  <feather type="user"></feather>Edit Profile
+                <a @click="profile()">
+                  <feather type="user"></feather>Mon profil
                 </a>
               </li>
 
               <li>
                 <a @click="logout">
-                  <feather type="log-out"></feather><span>Log out</span>
+                  <feather type="log-out"></feather><span>Deconnection</span>
                 </a>
               </li>
             </ul>
@@ -183,6 +183,9 @@ export default {
         this.$store.dispatch('afterLogout');
         this.$router.push('/login')
       })
+    },
+    profile() {
+      this.$router.push('/profil/mon-profil')
     },
 
     handleResize() {

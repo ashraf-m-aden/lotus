@@ -71,14 +71,11 @@ export const actions = {
 
     }
     ,
-    async afterLogin({ commit, dispatch }, user) {
+    async afterLogin({ commit, dispatch }, id) {
 
-        await AuthService.getUserData(user.uid).then(async (res) => {
+        await AuthService.getUserData(id).then(async (res) => {
             await commit('SET_AUTH', true)
             await dispatch('setUserData', res.data())
-        }).catch(() => {
-            commit('SET_AUTH', false)
-            dispatch('setUserData', null)
         })
 
     },

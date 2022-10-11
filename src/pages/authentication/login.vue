@@ -59,7 +59,7 @@ export default {
 
         Userauth.login(data.username, data.password)
           .then(async (result) => {
-            await this.$store.dispatch('afterLogin', result)
+            await this.$store.dispatch('afterLogin', result.uid)
             this.$toasted.show("Connecté avec succés", {
               theme: "bubble",
               position: "top-right",
