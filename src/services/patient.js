@@ -1,6 +1,8 @@
 
-import { db } from "../../db";
+import { db, fb } from "../../db";
 import store from "../store";
+import { firebase as config } from '../../config.json';
+import firebase from 'firebase/app'
 
 // interface Formation {
 //     inscription: Boolean,
@@ -17,42 +19,51 @@ import store from "../store";
 
 // }
 
-export default {
-    async getTraining() {
-        let documents;
-        await db.collection('formations', ref => ref.where('inscription', '==', true)).get().then(querySnapshot => {
-            documents = querySnapshot.docs.map(doc => doc.data());
-            // do something with documents
+class PatientService {
+    async getPatient(id) {
+        let document;
+        await db.collection('patients', ref => ref.where('id', '==', id)).get().then(querySnapshot => {
+            document = querySnapshot.docs.map(doc => doc.data());
+            document[0].date = new Date((document[0].date).toDate()).toLocaleDateString("fr-FR")
+            document[0].dob = new Date((document[0].dob)).toLocaleDateString("fr-FR")
         })
-        return documents;
+        return document[0];
 
-    },
-    async getMyTraining() {
+    }
+    async getPatients() {
         let docs = [];
-
-        let user = store.getters.getUserData  // je recuperer les données de l'user connecté dans vuex
-        // eslint-disable-next-line no-console
-        console.log(user);
-        await user.reserved.foreach(async id => {
-            await db.collection('formations').doc(id).get().then(querySnapshot => {
-                const document = querySnapshot.docs.map(doc => doc.data());
-                // do something with documents
-                docs.push(document)
-            })
+        //console.log(fb.auth().currentUser);
+        await db.collection('patients').get().then(querySnapshot => {  // c'est comme ca que je retrouve les documents
+            const document = querySnapshot.docs.map(doc => doc.data());
+            document[0].date = new Date((document[0].date).toDate()).toLocaleDateString("fr-FR")
+            document[0].dob = new Date((document[0].dob)).toLocaleDateString("fr-FR")
+            docs.push(document[0])   // je fais ca [0] pack bizarement ca retourne un  array au lieu d'un seul doc
         })
         return docs;
 
-    },
-    async registerFormation(formation) {
+    }
+    async registerPatient(patient) {
         let user = store.getters.getUserData  // je recuperer les données de l'user connecté dans vuex
+        const password = patient.number
+        const firebaseConfiguration = config
+        const tempApp = firebase.initializeApp(firebaseConfiguration, "tempApp");
+        const tempAppAuth = firebase.auth(tempApp);
+        await tempAppAuth.createUserWithEmailAndPassword(patient.email, password)
+            .then(async (newUser) => {
+                patient.id = newUser.user.uid;
+                patient.creerPar = user.id;
+                // tslint:disable-next-line:max-line-length
+                const newPatient = Object.assign({}, patient); // on utilise object assign pack firebase refuse un objet personalisé, c pour faire un objet pure javascript
+                await db.collection('patients').doc(newUser.user.uid).set(newPatient);
+                await db.collection('users').doc(newUser.user.uid).set(newPatient);
+            })
+            .catch(error => {
+                console.log(error);
+            }).finally(() => {
+                tempAppAuth.signOut()
+                    .then(() => tempApp.delete());
+            });
 
-        user.reserved.push(formation.id)  // j'ajoute la nouvelle formation aux formationx existantes 
-        await db.collection('users').doc(user.id).update({ reserved: user.reserved });  // je mets à jours la table
-
-        formation.reserved.push(user.id)  // j'ajoute la nouvelle formation aux formationx existantes 
-
-        await db.collection('formations').doc(formation.id).update({ reserved: formation.reserved });  // je mets à jours la table
-        store.dispatch("setCourses");
     }
 
 };
@@ -72,3 +83,6 @@ export default {
 //         const document = snapshot.data()
 //         // do something with document
 //     })
+
+
+export default new PatientService();

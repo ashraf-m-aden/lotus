@@ -146,6 +146,7 @@ export default {
   },
   computed: {
     user() {
+      console.log(this.$store.getters.getUserData);
       return this.$store.getters.getUserData
     }
   }

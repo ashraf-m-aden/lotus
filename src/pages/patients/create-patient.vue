@@ -15,35 +15,49 @@
                     <b-tab title="Compte" data-feather="user" active>
                       <form class="needs-validation user-add" novalidate="">
                         <h4>Details</h4>
-                        <div class="form-group row">
+                        <div class="form-group row mt-5">
                           <label for="validationCustom0" class="col-xl-1 col-md-4"><span>*</span> Nom</label>
-                          <input class="form-control col-xl-4 col-md-4" id="validationCustom0" type="text"
-                            required="" />
-                          <label for="validationCustom2" class="col-xl-1 col-md-4"><span>*</span> Email</label>
-                          <input class="form-control col-xl-4 col-md-7" id="validationCustom2" type="text"
-                            required="" />
+                          <input class="form-control col-xl-4 col-md-4" id="validationCustom0" type="text" required=""
+                            v-model="patient.name" />
+                          <label for="validationCustom2" class="col-xl-1 col-md-4">Email</label>
+                          <input class="form-control col-xl-4 col-md-7" id="validationCustom2" type="text" required=""
+                            v-model="patient.email" />
+
                         </div>
-                        <div class="form-group row">
-                          <label for="validationCustom2" class="col-xl-2 col-md-4"><span>*</span> Numero</label>
-                          <input class="form-control col-xl-3 col-md-7" id="validationCustom2" type="number"
-                            required="" />
-                          <label for="validationCustom2" class="col-xl-2 col-md-4"><span>*</span> Addresse</label>
-                          <input class="form-control col-xl-3 col-md-7" id="validationCustom2" type="text"
-                            required="" />
+                        <div class="form-group row mt-5">
+                          <label for="cin" class="col-xl-2 col-md-4"><span>*</span> Numero CIN</label>
+                          <input class="form-control col-xl-3 col-md-7" id="cin" type="number" required=""
+                            v-model="patient.cin" />
+
+
+                          <label for="dob" class="col-xl-2 col-md-4"><span>*</span> Date de
+                            naissance</label>
+                          <input class="form-control col-xl-3 col-md-7" id="dob" type="date" required=""
+                            v-model="patient.dob" />
+
+                        </div>
+                        <div class="form-group row mt-5">
+                          <label for="validationCustom2" class="col-xl-2 col-md-4"><span>*</span> Numero de
+                            telephone</label>
+                          <input class="form-control col-xl-3 col-md-7" id="validationCustom2" type="number" required=""
+                            v-model="patient.number" />
+                          <label for="validationCustom2" class="col-xl-2 col-md-4"> Addresse</label>
+                          <input class="form-control col-xl-3 col-md-7" id="validationCustom2" type="text" required=""
+                            v-model="patient.address" />
                         </div>
 
-                        <div class="form-group row">
+                        <!-- <div class="form-group row mt-5">
                           <label for="validationCustom4" class="col-xl-3 col-md-4">Photo</label>
                           <input class="form-control col-xl-8 col-md-7" id="validationCustom4" type="file"
                             required="" />
-                        </div>
+                        </div> -->
                       </form>
                     </b-tab>
                   </b-tabs>
                 </div>
               </ul>
               <div class="pull-right">
-                <button type="button" class="btn btn-primary">Ajouter</button>
+                <button type="button" class="btn btn-primary" @click="onComplete()">Ajouter</button>
               </div>
             </div>
           </div>
@@ -55,14 +69,27 @@
 </template>
 
 <script>
+import patientService from '../../services/patient';
 export default {
   data() {
     return {
-      content: "<h1>Some initial content</h1>",
+      patient: {
+        name: '',
+        cin: '',
+        email: '',
+        number: '',
+        address: '',
+        dob: '',
+        date: new Date(),
+      }
     };
   },
   methods: {
-    onComplete() { },
+    onComplete() {
+      patientService.registerPatient(this.patient).then(() => {
+        this.$router.push('/patients/patient-lists')
+      })
+    },
   },
 };
 </script>

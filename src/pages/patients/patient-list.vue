@@ -12,11 +12,7 @@
             <div class="card-body">
               <div class="table-responsive datatable-vue user-list">
                 <div>
-                  <b-modal
-                    id="modal-1"
-                    title="Confirmation"
-                    @ok="deleteBatchRow"
-                  >
+                  <b-modal id="modal-1" title="Confirmation" @ok="deleteBatchRow">
                     <p class="my-4">Are you sure!</p>
                   </b-modal>
                 </div>
@@ -32,30 +28,12 @@
                   :selectable="false"
                 >
                 </commonTable> -->
-                <b-table
-                  class="text-center"
-                  :select-mode="selectMode"
-                  show-empty
-                  striped
-                  hover
-                  head-variant="light"
-                  bordered
-                  stacked="md"
-                  :items="items"
-                  :fields="tablefields"
-                  :filter="filter"
-                  :current-page="currentPage"
-                  :per-page="perPage"
-                  @filtered="onFiltered"
-                  @row-selected="rowSelected"
-                >
+                <b-table class="text-center" :select-mode="selectMode" show-empty striped hover head-variant="light"
+                  bordered stacked="md" :items="items" :fields="tablefields" :filter="filter"
+                  :current-page="currentPage" :per-page="perPage" @filtered="onFiltered" @row-selected="rowSelected">
                   <template v-slot:head(delete)>
-                    <b-button
-                      variant="danger"
-                      :disabled="selectedRows.length === 0"
-                      @click="showMsgBoxTwo"
-                      >Delete</b-button
-                    >
+                    <b-button variant="danger" :disabled="selectedRows.length === 0" @click="showMsgBoxTwo">Delete
+                    </b-button>
                   </template>
 
                   <template v-slot:cell(action)="{ item, field: { key } }">
@@ -64,21 +42,14 @@
                       @change="deleteSelected(item)"
                     ></b-checkbox> -->
                     <a>
-                      <router-link :to="'/patients/patient-profile/' + item.id"
-                        >Consulter</router-link
-                      ></a
-                    >
+                      <router-link :to="'/patients/patient-profile/' + item.id">Consulter</router-link>
+                    </a>
                   </template>
                 </b-table>
               </div>
               <b-col md="12" class="my-1 p-0 pagination-justify">
-                <b-pagination
-                  v-model="currentPage"
-                  :total-rows="totalRows"
-                  :per-page="perPage"
-                  aria-controls="my-table"
-                  class="mt-4"
-                ></b-pagination>
+                <b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" aria-controls="my-table"
+                  class="mt-4"></b-pagination>
               </b-col>
             </div>
           </div>
@@ -90,6 +61,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import patient from "../../services/patient";
 
 export default {
   data() {
@@ -97,8 +69,8 @@ export default {
       modes: ["multi", "single", "range"],
       tablefields: [
         { key: "name", label: "Nom", sortable: true },
-        { key: "age", label: "Age", sortable: false },
-        { key: "number", label: "Numero", sortable: false },
+        { key: "dob", label: "Date de naissance", sortable: false },
+        { key: "date", label: "Date", sortable: false },
         { key: "action" },
       ],
       filter: null,
@@ -108,19 +80,25 @@ export default {
       pageOptions: [5, 10, 15],
       selectMode: "multi",
       selected: [],
+      items: []
     };
   },
   created() {
-    this.$store.dispatch("user/getUsers");
   },
-  mounted() {
+  async mounted() {
     // Set the initial number of items
-    this.totalRows = this.items.length;
+    await patient.getPatients().then((data) => {
+      this.items = data
+      this.totalRows = this.items.length;
+    }).catch(error => {
+      console.log(error);
+    });
+
   },
   computed: {
-    ...mapGetters({
-      items: "user/getUsers",
-    }),
+    // ...mapGetters({
+    //   items: "user/getUsers",
+    // }),
     sortOptions() {
       // Create an options list from our fields
       return this.tablefields
