@@ -6,8 +6,7 @@ import store from './store'
 import BootstrapVue from 'bootstrap-vue'
 import Breadcrumbs from './components/bread-crumbs.vue'
 import VueFeather from 'vue-feather';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+
 import PxCard from './components/pxcard.vue';
 // config for firebase
 import config from '../config.json'
@@ -29,7 +28,11 @@ Vue.use(VueFeather);
 Vue.component(PxCard.name, PxCard)
 Vue.use(VueApexCharts)
 Vue.component('apexchart', VueApexCharts)
-firebase.initializeApp(config.firebase);
+
+import { fb, db } from '../db.js'
+
+Vue.use(fb)
+Vue.use(db)
 Vue.component("ValidationObserver", ValidationObserver);
 Vue.component("ValidationProvider", ValidationProvider);
 Vue.use(Toasted, {

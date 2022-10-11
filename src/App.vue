@@ -4,4 +4,15 @@
   </div>
 </template>
 
-<style></style>
+<style>
+
+</style>
+
+<script>
+export default {
+  beforeCreate() {
+    this.$store.dispatch('checkAuth')
+      ;
+  },
+}
+</script>

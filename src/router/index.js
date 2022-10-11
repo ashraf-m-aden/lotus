@@ -1,31 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Body from '../components/Body.vue';
-import firebase from 'firebase/app';
-import Auth from '../pages/authentication/index.vue';
-import Userauth from '../auth/index.js'
+
+import { fb } from '../../db';
+import store from '../store';
 Vue.use(VueRouter)
 
 const routes = [
 
-  { path: '', redirect: { name: 'patient-list' } },
-  { path: '/', redirect: { name: 'patient-list' } },
-  {
-    path: '/dashboard',
-    component: Body,
-    redirect: { name: 'dashboard' },
-    children: [{
-      path: 'acceuil',
-      name: 'dashboard',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ '../pages/patients/patient-list.vue'),
-      meta: {
-        title: 'Oula Xassuus',
-      }
-    }]
-  },
+
+  // {
+  //   path: '/dashboard',
+  //   component: Body,
+  //   redirect: { name: 'dashboard' },
+  //   children: [{
+  //     path: 'acceuil',
+  //     name: 'dashboard',
+  //     // route level code-splitting
+  //     // this generates a separate chunk (about.[hash].js) for this route
+  //     // which is lazy-loaded when the route is visited.
+  //     component: () => import(/* webpackChunkName: "about" */ '../pages/patients/patient-list.vue'),
+  //     meta: {
+  //       title: 'Lotus',
+  //     }
+  //   }]
+  // },
   {
     path: '/doctors',
     name: 'doctors',
@@ -35,7 +34,7 @@ const routes = [
       name: 'doctor-list',
       component: () => import(/* webpackChunkName: "about" */ '../pages/doctors/doctor-list.vue'),
       meta: {
-        title: 'Liste des docteurs | Oula Xassuus',
+        title: 'Liste des docteurs | Lotus',
 
       }
     },
@@ -44,7 +43,7 @@ const routes = [
       name: 'create-doctor',
       component: () => import(/* webpackChunkName: "about" */ '../pages/doctors/create-doctor.vue'),
       meta: {
-        title: 'Ajouter un docteur | Oula Xassuus',
+        title: 'Ajouter un docteur | Lotus',
 
       }
     }
@@ -59,7 +58,7 @@ const routes = [
       name: 'patient-list',
       component: () => import(/* webpackChunkName: "about" */ '../pages/patients/patient-list.vue'),
       meta: {
-        title: 'Liste des patients | Oula Xassuus',
+        title: 'Liste des patients | Lotus',
 
       }
     },
@@ -68,7 +67,7 @@ const routes = [
       name: 'create-patient',
       component: () => import(/* webpackChunkName: "about" */ '../pages/patients/create-patient.vue'),
       meta: {
-        title: 'Ajouter un patient | Oula Xassuus',
+        title: 'Ajouter un patient | Lotus',
 
       }
     },
@@ -77,7 +76,7 @@ const routes = [
       name: 'patient-profile',
       component: () => import(/* webpackChunkName: "about" */ '../pages/patients/patient-profil.vue'),
       meta: {
-        title: 'Profil de la patiente | Oula Xassuus',
+        title: 'Profil de la patiente | Lotus',
 
       }
     }
@@ -87,7 +86,7 @@ const routes = [
     path: '/login',
     name: 'Login',
     meta: {
-      title: 'Page de connexion | Oula Xassuus',
+      title: 'Page de connexion | Lotus',
 
     },
     // route level code-splitting
@@ -95,8 +94,8 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../pages/authentication/index.vue')
   },
-  { path: '**', redirect: { name: 'dashboard' } },
-
+  { path: '**', redirect: { name: 'patient-list' } },
+  { path: '/', redirect: { name: 'patient-list' } },
 ]
 
 const router = new VueRouter({
@@ -106,15 +105,19 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  firebase.auth().onAuthStateChanged(() => {
-    if (to.meta.title) {
-      document.title = to.meta.title
-    }
-    const CurrentUser = firebase.auth().currentUser;
-    if (to.path === "/login" || CurrentUser || Userauth.isAuthenticatedUser()) {
-      return next();
-    }
-    next('/login')
-  });
+  const isAuth = localStorage.getItem('isLoggedIn')
+
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  if (to.name === "Login" && isAuth === 'true') {
+    next({ name: "patient-list" })
+  }
+  if (to.name !== "Login" && isAuth == 'false') {
+    next({ name: "Login" })
+  }
+  next()
+
+
 });
 export default router

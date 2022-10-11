@@ -16,78 +16,26 @@
                       <form class="needs-validation user-add" novalidate="">
                         <h4>Details</h4>
                         <div class="form-group row">
-                          <label
-                            for="validationCustom0"
-                            class="col-xl-1 col-md-4"
-                            ><span>*</span> Nom</label
-                          >
-                          <input
-                            class="form-control col-xl-4 col-md-4"
-                            id="validationCustom0"
-                            type="text"
-                            required=""
-                          />
-                          <label
-                            for="validationCustom2"
-                            class="col-xl-1 col-md-4"
-                            ><span>*</span> Email</label
-                          >
-                          <input
-                            class="form-control col-xl-4 col-md-7"
-                            id="validationCustom2"
-                            type="text"
-                            required=""
-                          />
+                          <label for="validationCustom0" class="col-xl-1 col-md-4"><span>*</span> Nom</label>
+                          <input class="form-control col-xl-4 col-md-4" id="validationCustom0" type="text"
+                            required="" />
+                          <label for="validationCustom2" class="col-xl-1 col-md-4"><span>*</span> Email</label>
+                          <input class="form-control col-xl-4 col-md-7" id="validationCustom2" type="text"
+                            required="" />
                         </div>
                         <div class="form-group row">
-                          <label
-                            for="validationCustom2"
-                            class="col-xl-2 col-md-4"
-                            ><span>*</span> Numero</label
-                          >
-                          <input
-                            class="form-control col-xl-3 col-md-7"
-                            id="validationCustom2"
-                            type="number"
-                            required=""
-                          />
-                          <label
-                            for="validationCustom2"
-                            class="col-xl-2 col-md-4"
-                            ><span>*</span> Addresse</label
-                          >
-                          <input
-                            class="form-control col-xl-3 col-md-7"
-                            id="validationCustom2"
-                            type="text"
-                            required=""
-                          />
+                          <label for="validationCustom2" class="col-xl-2 col-md-4"><span>*</span> Numero</label>
+                          <input class="form-control col-xl-3 col-md-7" id="validationCustom2" type="number"
+                            required="" />
+                          <label for="validationCustom2" class="col-xl-2 col-md-4"><span>*</span> Addresse</label>
+                          <input class="form-control col-xl-3 col-md-7" id="validationCustom2" type="text"
+                            required="" />
                         </div>
+
                         <div class="form-group row">
-                          <label
-                            for="validationCustom2"
-                            class="col-xl-2 col-md-4"
-                            ><span>*</span> Second Numero</label
-                          >
-                          <input
-                            class="form-control col-xl-3 col-md-7"
-                            id="validationCustom2"
-                            type="number"
-                            required=""
-                          />
-                        </div>
-                        <div class="form-group row">
-                          <label
-                            for="validationCustom4"
-                            class="col-xl-3 col-md-4"
-                            ><span>*</span> Photo</label
-                          >
-                          <input
-                            class="form-control col-xl-8 col-md-7"
-                            id="validationCustom4"
-                            type="file"
-                            required=""
-                          />
+                          <label for="validationCustom4" class="col-xl-3 col-md-4">Photo</label>
+                          <input class="form-control col-xl-8 col-md-7" id="validationCustom4" type="file"
+                            required="" />
                         </div>
                       </form>
                     </b-tab>
@@ -114,8 +62,10 @@ export default {
     };
   },
   methods: {
-    onComplete() {},
+    onComplete() { },
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+
+</style>

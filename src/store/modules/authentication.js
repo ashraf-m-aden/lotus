@@ -1,85 +1,99 @@
-import router from '../../router/index.js';
-import firebase from "firebase";
-import Userauth from "../../auth/index.js";
+import Vuex from 'vuex';
+import Vue from 'vue';
+import firebase from 'firebase'
+import AuthService from '../../services/auth';
+Vue.use(Vuex);
 
-const user = JSON.parse(localStorage.getItem('user'));
-const initialState = user ? { status: { loggedIn: true }, user } : { status: {}, user: null };
 
-export const authentication = {
-    namespaced: true,
-    state: initialState,
-    getters: {
+// state is the same as what would typically go inside of the data object when using Vue without Vuex.
+export const state = () => ({
+    userData: null,
+    isLoggedIn: false
+})
 
+// getters are Vuex's equivalent to computed properties in Vue.
+// functions here will always contain state as a parameter
+export const getters = {
+
+    getUserData(state) {
+        return state.userData
     },
-    actions: {
-        firebaseLogin({ dispatch, commit }, data) {
-            commit('loginRequest', data.username);
-            firebase
-                .auth()
-                .signInWithEmailAndPassword(data.username, data.password)
-                .then(
-                    result => {
-                        commit('loginSuccess', user);
-                        Userauth.localLogin(result);
-                        if (result.user.refreshToken) {
-                            localStorage.setItem('user', JSON.stringify(result.user.refreshToken));
-                        }
-                        router.push("/");
-                    },
-                    err => {
-
-                        dispatch('alert/error', err, { root: true });
-
-                    }
-                );
-        },
-        firebaseRegister({ dispatch, commit }, data) {
-            commit('registerRequest', data.username);
-            firebase
-                .auth()
-                .createUserWithEmailAndPassword(data.username, data.password)
-                .then(
-                    result => {
-                        commit('loginSuccess', user);
-                        Userauth.localLogin(result);
-                        if (result.user.refreshToken) {
-                            localStorage.setItem('user', JSON.stringify(result.user.refreshToken));
-                        }
-                        router.push("/");
-                    },
-                    err => {
-
-                        dispatch('alert/error', err, { root: true });
-
-                    }
-                );
-        },
-
-        logout({ commit }) {
-            localStorage.removeItem('user');
-            commit('logout');
-        }
-    },
-    mutations: {
-        loginRequest(state, user) {
-            state.status = { loggingIn: true };
-            state.user = user;
-        },
-        registerRequest(state, user) {
-            state.status = { loggingIn: true };
-            state.user = user;
-        },
-        loginSuccess(state, user) {
-            state.status = { loggedIn: true };
-            state.user = user;
-        },
-        loginFailure(state) {
-            state.status = {};
-            state.user = null;
-        },
-        logout(state) {
-            state.status = {};
-            state.user = null;
-        }
+    getAuthentication(state) {
+        return state.isLoggedIn
     }
+}
+
+// mutations are essentially functions that update state in some way.
+// You can think of these as kind of being Vuex's equivalent to Vue's methods.
+export const mutations = {
+
+
+    SET_AUTH(state, isLoggedIn) {
+        localStorage.setItem('isLoggedIn', isLoggedIn)
+        state.isLoggedIn = isLoggedIn;
+
+    }
+    ,
+    SET_USER(state, user) {
+        state.userData = user;
+    }
+}
+// actions are effectively the functions that get called by your components in order to trigger a mutation.
+export const actions = {
+
+    setAuthentication({ commit }, isLoggedIn) {
+        commit('SET_AUTH', isLoggedIn)
+    },
+
+    setUserData({ commit }, user) {
+        commit('SET_USER', user)
+    },
+
+    async checkAuth({ commit, dispatch }) {
+        firebase.auth().onAuthStateChanged(async user => {
+            if (user) {
+                await AuthService.getUserData(user.uid).then(async (res) => {
+                    await commit('SET_AUTH', true)
+                    await dispatch('setUserData', res.data())
+                    // // eslint-disable-next-line no-console
+                    // console.log(res.data());
+                }).catch(() => {
+                    commit('SET_AUTH', false)
+                    dispatch('setUserData', null)
+                })
+
+            } else {
+                commit('SET_AUTH', false)
+                dispatch('setUserData', null)
+
+            }
+        })
+
+    }
+    ,
+    async afterLogin({ commit, dispatch }, user) {
+
+        await AuthService.getUserData(user.uid).then(async (res) => {
+            await commit('SET_AUTH', true)
+            await dispatch('setUserData', res.data())
+        }).catch(() => {
+            commit('SET_AUTH', false)
+            dispatch('setUserData', null)
+        })
+
+    },
+
+    afterLogout({ commit, dispatch }) {
+        commit('SET_AUTH', false)
+        dispatch('setUserData', null)
+    }
+}
+
+
+
+export default {
+    actions,
+    mutations,
+    getters,
+    state
 }

@@ -5,16 +5,16 @@
         <div class="page-header-left">
           <h3>
             {{ title }}
-            <small>Oula Xassuus</small>
+            <small>Lotus</small>
           </h3>
         </div>
       </div>
       <div class="col-lg-6">
         <ol class="breadcrumb pull-right">
           <li class="breadcrumb-item">
-            <router-link :to="{ path: '/dashboard/default' }"
-              ><feather type="home"></feather
-            ></router-link>
+            <router-link :to="{ path: '/dashboard/default' }">
+              <feather type="home"></feather>
+            </router-link>
           </li>
           <li class="breadcrumb-item" v-if="main">{{ main }}</li>
           <li class="breadcrumb-item active" v-if="title">{{ title }}</li>

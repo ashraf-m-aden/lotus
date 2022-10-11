@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import menu from './modules/menu.js'
 import user from './modules/user.js'
-import { authentication } from './modules/authentication.js'
+import authentication from './modules/authentication.js'
 import reports from './modules/reports.js';
 import order from './modules/order.js';
 import employee from './modules/employee.js';
