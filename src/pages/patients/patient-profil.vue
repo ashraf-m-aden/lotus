@@ -93,7 +93,7 @@
         </div>
       </div>
     </div>
-    <Consultations></Consultations>
+    <Consultations :user="user"></Consultations>
   </div>
 </template>
 
