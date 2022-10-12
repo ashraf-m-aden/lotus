@@ -33,14 +33,37 @@ class PatientService {
     async getPatients() {
         let docs = [];
         //console.log(fb.auth().currentUser);
-        await db.collection('patients').get().then(querySnapshot => {  // c'est comme ca que je retrouve les documents
+        await db.collection('patients', ref => ref.where('enabled', '==', true)).get().then(querySnapshot => {  // c'est comme ca que je retrouve les documents
             const document = querySnapshot.docs.map(doc => doc.data());
-            document[0].date = new Date((document[0].date).toDate()).toLocaleDateString("fr-FR")
-            document[0].dob = new Date((document[0].dob)).toLocaleDateString("fr-FR")
-            docs.push(document[0])   // je fais ca [0] pack bizarement ca retourne un  array au lieu d'un seul doc
+            if (document.length > 0) {
+                document[0].date = new Date((document[0].date).toDate()).toLocaleDateString("fr-FR")
+                document[0].dob = new Date((document[0].dob)).toLocaleDateString("fr-FR")
+                docs.push(document[0])   // je fais ca [0] pack bizarement ca retourne un  array au lieu d'un seul doc
+            }
         })
         return docs;
 
+    }
+
+    async deletePatient(id) {
+        await db.collection('surveillances', ref => ref.where('idPatient', '==', id)).get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach(element => {
+                    element.ref.delete()
+                });
+            });
+        await db.collection('dossiers', ref => ref.where('idPatient', '==', id)).get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach(element => {
+                    element.ref.delete()
+                });
+            });
+        await db.collection('patients', ref => ref.where('id', '==', id)).get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach(element => {
+                    element.ref.delete()
+                });
+            });
     }
     async registerPatient(patient) {
         let user = store.getters.getUserData  // je recuperer les données de l'user connecté dans vuex
@@ -52,10 +75,21 @@ class PatientService {
             .then(async (newUser) => {
                 patient.id = newUser.user.uid;
                 patient.creerPar = user.id;
+                let dossier = {
+                    id: '',
+                    date: patient.date,
+                    creerPar: user.id,
+                    gender: '',
+                    patientId: patient.id
+                }
                 // tslint:disable-next-line:max-line-length
                 const newPatient = Object.assign({}, patient); // on utilise object assign pack firebase refuse un objet personalisé, c pour faire un objet pure javascript
-                await db.collection('patients').doc(newUser.user.uid).set(newPatient);
-                await db.collection('users').doc(newUser.user.uid).set(newPatient);
+                const newDossier = await db.collection('dossier').add(dossier);
+                dossier.id = newDossier.id;
+                await db.collection('dossier').doc(dossier.id).update(dossier);
+                patient.dossier.push(dossier.id);
+                await db.collection('patients').doc(patient.id).set(newPatient);
+
             })
             .catch(error => {
                 console.log(error);

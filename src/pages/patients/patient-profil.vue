@@ -93,21 +93,27 @@
         </div>
       </div>
     </div>
-    <Consultations :user="user"></Consultations>
+    <Historique :user="user"></Historique>
+    <hr>
+    <div class="d-flex">
+      <button @click="deletePatient()">Supprimmer la patiente</button>
+    </div>
   </div>
 </template>
 
 <script>
 import patientService from '../../services/patient';
 import Consultations from './consultations/consultions.vue';
+import Historique from './historique/historique.vue';
 export default {
   data() {
     return {
-      user: {}
+      user: {},
+      dossier: {}
     };
   },
   components: {
-    Consultations
+    Historique
   },
   created() {
     patientService.getPatient(this.$route.params.id).then(data => {
@@ -116,6 +122,13 @@ export default {
   },
   methods: {
     onComplete() { },
+    deletePatient() {
+      patientService.deletePatient(this.user.id).then(() => {
+        this.$router.push('/')
+      }).catch(error => {
+        console.log(error);
+      })
+    }
   },
 };
 </script>

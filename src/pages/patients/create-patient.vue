@@ -81,6 +81,14 @@ export default {
         address: '',
         dob: '',
         date: new Date(),
+        dossiers: [],
+        enable: true,
+        profession: '',
+        structure: '',
+        taille: '',
+        spouse: '',
+
+
       }
     };
   },
