@@ -34,8 +34,8 @@ class HistoriqueService {
             , id: '', idPatient: idPatient
         };
         const newAntePersonel = await db.collection("antePersonel").add(antePersonel);
-        surveillance.id = newAntePersonel.id;
-        await db.collection("antePersonel").doc(surveillance.id).update(surveillance);
+        antePersonel.id = newAntePersonel.id;
+        await db.collection("antePersonel").doc(antePersonel.id).update(antePersonel);
     }
     async setAntePersonel(antePersonel) {
 
@@ -55,13 +55,78 @@ class HistoriqueService {
 
     /////////////////////////////////////////////////// ANTECEDENT OBSTETRICAUX
 
+    async generateAnteObstre(idPatient) {
+        let anteObstre = {
+            nbrGrossesse: '',
+            nbrGrossesseNormal: '',
+            nbrGrossesseComplique: '',
+            complicationGrossesse: '',
+            nbrAvortement: '',
+            avortementMois: '',
+            causeAvortement: '',
+            nbrAccouchement: '',
+            nbrAccouchementNormaux: '',
+            nbrAccouchmentPathologiques: '',
+            pathologies: '',
+            nbrEnfantsVivant: '',
+            nbrEnfantsMortNes: '',
+            nbrEnfantsDecedes: '',
+            raisonDeces: ''
+            , id: '', idPatient: idPatient
+        };
+        const newAnteObstre = await db.collection("anteObstre").add(anteObstre);
+        anteObstre.id = newAnteObstre.id;
 
+        await db.collection("anteObstre").doc(anteObstre.id).update(anteObstre);
+    }
+    async setAnteObstre(anteObstre) {
+
+        await db
+            .collection("anteObstre").doc(anteObstre.id).update(anteObstre)
+    }
+    async getAnteObstre(idPatient) {
+        let document;
+        await db
+            .collection("anteObstre", (ref) => ref.where("idPatient", "==", idPatient))
+            .get()
+            .then((querySnapshot) => {
+                document = querySnapshot.docs.map((doc) => doc.data());
+            });
+        return document[0];
+    }
 
 
 
     ///////////////////////////////////////////// ANTECEDENTS GYNECOLOGIQUE
 
 
+    async generateAnteGyneco(idPatient) {
+        let anteGyneco = {
+            anomalieMamaire: '',
+            infectionGenitale: '',
+            autres: ''
+            , id: '', idPatient: idPatient
+        };
+        const newData = await db.collection("anteGyneco").add(anteGyneco);
+        anteGyneco.id = newData.id;
+
+        await db.collection("anteGyneco").doc(anteGyneco.id).update(anteGyneco);
+    }
+    async setAnteGyneco(anteObstre) {
+
+        await db
+            .collection("anteGyneco").doc(anteGyneco.id).update(anteObstre)
+    }
+    async getAnteGyneco(idPatient) {
+        let document;
+        await db
+            .collection("anteGyneco", (ref) => ref.where("idPatient", "==", idPatient))
+            .get()
+            .then((querySnapshot) => {
+                document = querySnapshot.docs.map((doc) => doc.data());
+            });
+        return document[0];
+    }
 
 
 
@@ -69,6 +134,38 @@ class HistoriqueService {
 
 
 
+    async generateGrossesseActuelle(idPatient) {
+        let grossesseActuelle = {
+            gestite: '',
+            parite: '',
+            grossesseEvolutiveNormale: false,
+            menaceFausseCouche: false,
+            menaceAccouchementPremature: false,
+            rupturePrematureMembrane: false,
+            absenceMouvementActifFoetal: false,
+            autres: ''
+            , id: '', idPatient: idPatient
+        };
+        const newData = await db.collection("grossesseActuelle").add(grossesseActuelle);
+        grossesseActuelle.id = newData.id;
+
+        await db.collection("grossesseActuelle").doc(grossesseActuelle.id).update(grossesseActuelle);
+    }
+    async setGrossesseActuell(grossesseActuelle) {
+
+        await db
+            .collection("grossesseActuelle").doc(grossesseActuelle.id).update(grossesseActuelle)
+    }
+    async getGrossesseActuell(idPatient) {
+        let document;
+        await db
+            .collection("grossesseActuelle", (ref) => ref.where("idPatient", "==", idPatient))
+            .get()
+            .then((querySnapshot) => {
+                document = querySnapshot.docs.map((doc) => doc.data());
+            });
+        return document[0];
+    }
 
 
 
@@ -76,6 +173,41 @@ class HistoriqueService {
 
 
     ///////////////////////////////// BILAN COMPLET
+
+
+    async generateBilanComplet(idPatient) {
+        let bilanComplet = {
+            nfs: '',
+            gsrh: '',
+            toxoplasmose: '',
+            albuminurie: '',
+            glycemie: '',
+            hepatite: '',
+            rubeole: '',
+            sucre: '',
+            hiv: ''
+            , id: '', idPatient: idPatient
+        };
+        const newData = await db.collection("bilanComplet").add(bilanComplet);
+        bilanComplet.id = newData.id;
+
+        await db.collection("bilanComplet").doc(bilanComplet.id).update(bilanComplet);
+    }
+    async setBilanComplet(bilanComplet) {
+
+        await db
+            .collection("bilanComplet").doc(bilanComplet.id).update(bilanComplet)
+    }
+    async getBilanComplet(idPatient) {
+        let document;
+        await db
+            .collection("bilanComplet", (ref) => ref.where("idPatient", "==", idPatient))
+            .get()
+            .then((querySnapshot) => {
+                document = querySnapshot.docs.map((doc) => doc.data());
+            });
+        return document[0];
+    }
 
 }
 

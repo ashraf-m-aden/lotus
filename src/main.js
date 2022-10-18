@@ -18,6 +18,8 @@ import {
   ValidationProvider,
 
 } from "vee-validate";
+import { extend } from 'vee-validate';
+
 import Toasted from 'vue-toasted';
 import { VueEditor } from "vue2-editor";
 import VueDropzone from 'vue2-dropzone';
@@ -45,7 +47,20 @@ Vue.use(VueDropzone);
 Vue.use(VueEditor);
 
 Vue.use(BootstrapVue);
+Vue.component(extend)
+extend('notempty', {
+  validate: value => { return (value.toString()) == '' },
+  message: "wrong word"
+});
 
+extend('email', value => {
+  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  if (!regex.test(value)) {
+    return 'Mettez un format correct pour l\'email';
+  }
+  // All is good
+  return true;
+});
 new Vue({
   router,
   store,

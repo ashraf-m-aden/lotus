@@ -3,7 +3,7 @@ import { db, fb } from "../../db";
 import store from "../store";
 import { firebase as config } from '../../config.json';
 import firebase from 'firebase/app'
-
+import historiquesPatient from "./historiquesPatient";
 // interface Formation {
 //     inscription: Boolean,
 //     started: Boolean,
@@ -75,8 +75,8 @@ class PatientService {
             .then(async (newUser) => {
                 patient.id = newUser.user.uid;
                 patient.creerPar = user.id;
-                let dossier = {
-                    id: '',
+                let dossier = {  // le dossier c'est la pregnancy, un dossier par pregnancy
+                    id: patient.dossiers[0],
                     date: patient.date,
                     creerPar: user.id,
                     gender: '',
@@ -84,12 +84,18 @@ class PatientService {
                 }
                 // tslint:disable-next-line:max-line-length
                 const newPatient = Object.assign({}, patient); // on utilise object assign pack firebase refuse un objet personalisé, c pour faire un objet pure javascript
-                const newDossier = await db.collection('dossier').add(dossier);
-                dossier.id = newDossier.id;
-                await db.collection('dossier').doc(dossier.id).update(dossier);
-                patient.dossier.push(dossier.id);
-                await db.collection('patients').doc(patient.id).set(newPatient);
+                // const newDossier = await db.collection('dossier').add(dossier); // c'est dans le cas le numero de dossier est generé automatiquement
+                // dossier.id = newDossier.id; 
+                // await db.collection('dossier').doc(dossier.id).update(dossier);
+                await db.collection('dossier').doc(patient.dossier).set(dossier);
+                // patient.dossier.push(dossier.id); c'est dans le cas le numero de dossier est generé automatiquement
 
+                await db.collection('patients').doc(patient.id).set(newPatient);
+                await historiquesPatient.generateAnteGyneco(patient.id)
+                await historiquesPatient.generateAnteObstre(patient.id)
+                await historiquesPatient.generateAntePersonel(patient.id)
+                await historiquesPatient.generateBilanComplet(patient.id)
+                await historiquesPatient.generateGrossesseActuelle(patient.id)
             })
             .catch(error => {
                 console.log(error);
