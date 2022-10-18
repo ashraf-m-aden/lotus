@@ -7,8 +7,8 @@
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12">
-          <div class="card">
+        <div class="col-md-12 text-center">
+          <div v-if="!loading" class="card">
             <div class="card-body">
               <div class="table-responsive datatable-vue user-list">
                 <div>
@@ -53,6 +53,11 @@
               </b-col>
             </div>
           </div>
+          <div class="card text-center border" v-if="loading">
+            <div class="spinner-border text-danger text-center" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -80,7 +85,8 @@ export default {
       pageOptions: [5, 10, 15],
       selectMode: "multi",
       selected: [],
-      items: []
+      items: [],
+      loading: true
     };
   },
   created() {
@@ -90,8 +96,11 @@ export default {
     await patient.getPatients().then((data) => {
       this.items = data
       this.totalRows = this.items.length;
+      this.loading = false;
     }).catch(error => {
       console.log(error);
+      this.loading = false;
+
     });
 
   },

@@ -38,7 +38,7 @@ class HistoriqueService {
         await db.collection("antePersonel").doc(antePersonel.id).update(antePersonel);
     }
     async setAntePersonel(antePersonel) {
-
+        console.log(antePersonel);
         await db
             .collection("antePersonel").doc(antePersonel.id).update(antePersonel)
     }

@@ -673,6 +673,7 @@
 
 <script>
 import media from "@/components/media.vue";
+import historiquesPatient from "../../../services/historiquesPatient";
 import user from "../../../store/modules/user";
 
 export default {
@@ -749,6 +750,13 @@ export default {
     components: {
         media,
     },
+    async mounted() {
+        this.anteGyneco = await historiquesPatient.getAnteGyneco(this.user.id)
+        this.anteObstre = await historiquesPatient.getAnteObstre(this.user.id)
+        this.antePersonel = await historiquesPatient.getAntePersonel(this.user.id)
+        this.bilanComplet = await historiquesPatient.getBilanComplet(this.user.id)
+        this.grossesseActuelle = await historiquesPatient.getGrossesseActuell(this.user.id)
+    },
     methods: {
         sauvegarderSurveillance() {
 
@@ -756,7 +764,12 @@ export default {
         sauvegarderAnteObstre() {
 
         },
-        sauvegarderAntePersonnel() { },
+        async sauvegarderAntePersonnel() {
+            await historiquesPatient.setAntePersonel(this.antePersonel).then(async () => {
+                await historiquesPatient.getAntePersonel(this.user.id);
+                this.antePersonelModif = !this.antePersonelModif;
+            })
+        },
         sauvegarderAnteGyneco() {
 
         },

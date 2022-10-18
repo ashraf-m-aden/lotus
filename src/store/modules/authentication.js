@@ -7,7 +7,7 @@ Vue.use(Vuex);
 
 // state is the same as what would typically go inside of the data object when using Vue without Vuex.
 export const state = () => ({
-    userData: null,
+    userData: {},
     isLoggedIn: false
 })
 
