@@ -4,9 +4,12 @@
             <div class="col-12">
                 <div class="card tab2-card">
                     <div class="card-body">
-                        <h4 class="card-title text-underline text-bold text-danger">Résumé santé de la patiente</h4>
-
-                        <ul class="nav nav-tabs tab-coupon mb-0" id="top-tab" role="tablist">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title text-underline text-bold text-danger">Résumé santé de la patiente</h4>
+                            <feather class="feather" type="eye" v-show="eye" @click="close()"></feather>
+                            <feather class="feather" type="eye-off" v-show="!eye" @click="close()"></feather>
+                        </div>
+                        <ul class="nav nav-tabs tab-coupon mb-0" id="top-tab" role="tablist" v-show="eye">
                             <div class="tab-content" id="top-tabContent">
                                 <b-tabs content-class="mt-3">
 
@@ -91,13 +94,13 @@ import anteGyneco from "@/pages/patients/historique/anteGyneco.vue";
 import anteObstre from "@/pages/patients/historique/anteObstre.vue";
 import grossesseActuelle from "@/pages/patients/historique/grossesseActuelle.vue";
 import bilanComplet from "@/pages/patients/historique/bilanComplet.vue";
-import historiquesPatient from "../../../services/historiquesPatient";
 import user from "../../../store/modules/user";
 
 export default {
     props: ['user'],
     data() {
         return {
+            eye: true
         }
     },
     components: {
@@ -109,6 +112,11 @@ export default {
         bilanComplet
 
     },
+    methods: {
+        close() {
+            this.eye = !this.eye
+        }
+    },
 
 }
 </script>
@@ -118,5 +126,9 @@ export default {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.feather {
+    cursor: pointer;
 }
 </style>

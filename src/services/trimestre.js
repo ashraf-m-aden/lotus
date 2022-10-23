@@ -24,7 +24,7 @@ class TrimestreService {
     async getAllTrimestre(idDossier) {
         let docs = [];
         //console.log(fb.auth().currentUser);
-        await db.collection('trimestre', ref => ref.where('idDossier', '==', idDossier)).get().then(querySnapshot => {  // c'est comme ca que je retrouve les documents
+        await db.collection('trimestres', ref => ref.where('idDossier', '==', idDossier)).get().then(querySnapshot => {  // c'est comme ca que je retrouve les documents
             docs = querySnapshot.docs.map(doc => doc.data());
             docs.forEach(document => {
                 document.date = new Date((document.date).toDate()).toLocaleDateString("fr-FR")
@@ -58,7 +58,7 @@ class TrimestreService {
     }
     async generateTrimestres(idDossier, idPatient) {
         let trimestre = {
-            date: new Date(),
+            date: '',
             nbrMoisGrossesse: '',
             tensionArterielle: '',
             ta1: false,
@@ -66,7 +66,7 @@ class TrimestreService {
             ta3: false,
             ta1Meaning: "T.A. > 14/09",
             ta2Meaning: "T.A. > 13/08 et Prot. ++ ou >",
-            ta2Meaning: "T.A. > 14/09 et Prot. ++ ou >",
+            ta3Meaning: "T.A. > 14/09 et Prot. ++ ou >",
             anemieSigneClinique: false,
             proteineUrinaire: '',
             tauxHB: false,
@@ -81,7 +81,7 @@ class TrimestreService {
             autreQueCephalique: false,
             perteSang: false,
             promontoireAccessible: '',
-            observationSois: '',
+            observationSoins: '',
             echoId: '',
             nextRDV: '',
             prisePoidsAnormale: false,

@@ -81,7 +81,8 @@ class PatientService {
                     date: patient.date,
                     creerPar: user.id,
                     gender: '',
-                    patientId: patient.id
+                    patientId: patient.id,
+                    enabled: true
                 }
                 // tslint:disable-next-line:max-line-length
                 const newPatient = Object.assign({}, patient); // on utilise object assign pack firebase refuse un objet personalisé, c pour faire un objet pure javascript
@@ -110,7 +111,7 @@ class PatientService {
     }
     async retrieveTousDossierPatient(id) {
         let dossiers = []
-        await db.collection('dossier', ref => ref.where('patientId', '==', id)).get()
+        await db.collection('dossiers', ref => ref.where('patientId', '==', id).where('enabled', '==', true)).get()
             .then((querySnapshot) => {
                 dossiers = querySnapshot.docs.map(doc => doc.data());
                 dossiers.forEach(document => {
@@ -120,9 +121,14 @@ class PatientService {
         return dossiers;
     }
 
-    async createDossier(dossier) {
+    async createDossier(dossier, patient) {
+        patient.dossiers.push(dossier.id)
 
-        await db.collection('dossiers').doc(dossier.id).set(dossier);
+        await db.collection('dossiers').doc(dossier.id).set(dossier)
+        await db.collection('patients').doc(patient.id).update(patient);
+        await trimestre.generateTrimestres(dossier.id, patient.id)
+        await trimestre.generateVat(dossier.id, patient.id)
+
     }
 };
 

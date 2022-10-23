@@ -132,7 +132,7 @@ export default {
         dob: '',
         date: new Date(),
         dossiers: [],
-        enable: true,
+        enabled: true,
         profession: '',
         structure: '',
         taille: '',
