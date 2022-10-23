@@ -7,100 +7,114 @@ import historiquesPatient from "./historiquesPatient";
 
 
 class TrimestreService {
-    async getC(id) {
+
+
+
+
+
+    async getTrimestreById(id) {
         let document;
-        await db.collection('patients', ref => ref.where('id', '==', id)).get().then(querySnapshot => {
+        await db.collection('trimestre', ref => ref.where('id', '==', id)).get().then(querySnapshot => {
             document = querySnapshot.docs.map(doc => doc.data());
             document[0].date = new Date((document[0].date).toDate()).toLocaleDateString("fr-FR")
-            document[0].dob = new Date((document[0].dob)).toLocaleDateString("fr-FR")
         })
         return document[0];
 
     }
-    async getPatients() {
+    async getAllTrimestre(idDossier) {
         let docs = [];
         //console.log(fb.auth().currentUser);
-        await db.collection('patients', ref => ref.where('enabled', '==', true)).get().then(querySnapshot => {  // c'est comme ca que je retrouve les documents
-            const document = querySnapshot.docs.map(doc => doc.data());
-            if (document.length > 0) {
-                document[0].date = new Date((document[0].date).toDate()).toLocaleDateString("fr-FR")
-                document[0].dob = new Date((document[0].dob)).toLocaleDateString("fr-FR")
-                docs.push(document[0])   // je fais ca [0] pack bizarement ca retourne un  array au lieu d'un seul doc
-            }
+        await db.collection('trimestre', ref => ref.where('idDossier', '==', idDossier)).get().then(querySnapshot => {  // c'est comme ca que je retrouve les documents
+            docs = querySnapshot.docs.map(doc => doc.data());
+            docs.forEach(document => {
+                document.date = new Date((document.date).toDate()).toLocaleDateString("fr-FR")
+
+            })
+
         })
         return docs;
 
     }
 
-    async deletePatient(id) {
-        // await db.collection('surveillances', ref => ref.where('idPatient', '==', id)).get()
-        //     .then((querySnapshot) => {
-        //         querySnapshot.forEach(element => {
-        //             element.ref.delete()
-        //         });
-        //     });
-        // await db.collection('dossiers', ref => ref.where('idPatient', '==', id)).get()
-        //     .then((querySnapshot) => {
-        //         querySnapshot.forEach(element => {
-        //             element.ref.delete()
-        //         });
-        //     });
-        // await db.collection('patients').doc(id).update( )
-        //     .then((querySnapshot) => {
-        //         querySnapshot.forEach(element => {
-        //             element.ref.delete()
-        //         });
-        //     });
-    }
-    async registerPatient(patient) {
-        let user = store.getters.getUserData  // je recuperer les données de l'user connecté dans vuex
-        const password = patient.number
-        const firebaseConfiguration = config
-        const tempApp = firebase.initializeApp(firebaseConfiguration, "tempApp");
-        const tempAppAuth = firebase.auth(tempApp);
-        await tempAppAuth.createUserWithEmailAndPassword(patient.email, password)
-            .then(async (newUser) => {
-                patient.id = newUser.user.uid;
-                patient.creerPar = user.id;
-                let dossier = {  // le dossier c'est la pregnancy, un dossier par pregnancy
-                    id: patient.dossiers[0],
-                    date: patient.date,
-                    creerPar: user.id,
-                    gender: '',
-                    patientId: patient.id
-                }
-                // tslint:disable-next-line:max-line-length
-                const newPatient = Object.assign({}, patient); // on utilise object assign pack firebase refuse un objet personalisé, c pour faire un objet pure javascript
-                // const newDossier = await db.collection('dossier').add(dossier); // c'est dans le cas le numero de dossier est generé automatiquement
-                // dossier.id = newDossier.id; 
-                // await db.collection('dossier').doc(dossier.id).update(dossier);
-                await db.collection('dossier').doc(patient.dossier).set(dossier);
-                // patient.dossier.push(dossier.id); c'est dans le cas le numero de dossier est generé automatiquement
+    async getVat(idDossier) {
+        let document;
+        await db.collection('vat', ref => ref.where('idDossier', '==', idDossier)).get().then(querySnapshot => {  // c'est comme ca que je retrouve les documents
+            document = querySnapshot.docs.map(doc => doc.data());
 
-                await db.collection('patients').doc(patient.id).set(newPatient);
-                await historiquesPatient.generateAnteGyneco(patient.id)
-                await historiquesPatient.generateAnteObstre(patient.id)
-                await historiquesPatient.generateAntePersonel(patient.id)
-                await historiquesPatient.generateBilanComplet(patient.id)
-                await historiquesPatient.generateGrossesseActuelle(patient.id)
-            })
-            .catch(error => {
-                console.log(error);
-            }).finally(() => {
-                tempAppAuth.signOut()
-                    .then(() => tempApp.delete());
-            });
+            document[0].date1 = new Date((document.date1).toDate()).toLocaleDateString("fr-FR")
+            document[0].date2 = new Date((document.date2).toDate()).toLocaleDateString("fr-FR")
+            document[0].date3 = new Date((document.date3).toDate()).toLocaleDateString("fr-FR")
+
+        })
+        return document[0];
 
     }
-    async retrieveTousDossierPatient(id) {
-        let dossiers = []
-        await db.collection('dossier', ref => ref.where('patientId', '==', id)).get()
-            .then((querySnapshot) => {
-                dossiers = querySnapshot.docs.map(doc => doc.data());
-            });
-        return dossiers;
+
+    async setVat(vat) {
+        await db.collection('vat').doc(vat.id).update(vat);
+    }
+    async setTrimestre(trimestre) {
+        await db.collection('trimestres').doc(trimestre.id).update(trimestre);
+    }
+    async generateTrimestres(idDossier, idPatient) {
+        let trimestre = {
+            date: new Date(),
+            nbrMoisGrossesse: '',
+            tensionArterielle: '',
+            ta1: false,
+            ta2: false,
+            ta3: false,
+            ta1Meaning: "T.A. > 14/09",
+            ta2Meaning: "T.A. > 13/08 et Prot. ++ ou >",
+            ta2Meaning: "T.A. > 14/09 et Prot. ++ ou >",
+            anemieSigneClinique: false,
+            proteineUrinaire: '',
+            tauxHB: false,
+            poids: '',
+            hauteurUterine: '',
+            hauteurUterineAnormale: false,
+            mafBcf: false,
+            palpation: '',
+            presentationVicieuse: false,
+            toucherVaginal: '',
+            colOuvert: false,
+            autreQueCephalique: false,
+            perteSang: false,
+            promontoireAccessible: '',
+            observationSois: '',
+            echoId: '',
+            nextRDV: '',
+            prisePoidsAnormale: false,
+            id: '',
+            idPatient: idPatient,
+            idDossier: idDossier,
+            position: 1
+        };
+        for (let index = 0; index < 3; index++) {
+            trimestre.position = index + 1;
+            const ref = await db.collection('trimestres').add(trimestre)
+            trimestre.id = ref.id;
+            await db.collection('trimestres').doc(ref.id).update(trimestre);
+        }
+    }
+
+    async generateVat(idDossier, idPatient) {
+        let vatFerFoldine = {
+            id: '',
+            idPatient: idPatient,
+            idDossier: idDossier,
+            date1: '',
+            date2: '',
+            date3: ''
+        };
+        const ref = await db.collection('vat').add(vatFerFoldine)
+        vatFerFoldine.id = ref.id;
+        await db.collection('vat').doc(ref.id).update(vatFerFoldine);
+
     }
 };
+
+
 
 
 // // retrieve a collection

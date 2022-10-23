@@ -4,6 +4,7 @@ import store from "../store";
 import { firebase as config } from '../../config.json';
 import firebase from 'firebase/app'
 import historiquesPatient from "./historiquesPatient";
+import trimestre from "./trimestre";
 // interface Formation {
 //     inscription: Boolean,
 //     started: Boolean,
@@ -87,7 +88,7 @@ class PatientService {
                 // const newDossier = await db.collection('dossier').add(dossier); // c'est dans le cas le numero de dossier est generé automatiquement
                 // dossier.id = newDossier.id; 
                 // await db.collection('dossier').doc(dossier.id).update(dossier);
-                await db.collection('dossier').doc(patient.dossier).set(dossier);
+                await db.collection('dossiers').doc(patient.dossier).set(dossier);
                 // patient.dossier.push(dossier.id); c'est dans le cas le numero de dossier est generé automatiquement
 
                 await db.collection('patients').doc(patient.id).set(newPatient);
@@ -96,6 +97,8 @@ class PatientService {
                 await historiquesPatient.generateAntePersonel(patient.id)
                 await historiquesPatient.generateBilanComplet(patient.id)
                 await historiquesPatient.generateGrossesseActuelle(patient.id)
+                await trimestre.generateTrimestres(dossier.id, patient.id);
+                await trimestre.generateVat(dossier.id, patient.id);
             })
             .catch(error => {
                 console.log(error);
@@ -115,6 +118,11 @@ class PatientService {
                 });
             });
         return dossiers;
+    }
+
+    async createDossier(dossier) {
+
+        await db.collection('dossiers').doc(dossier.id).set(dossier);
     }
 };
 
