@@ -27,7 +27,7 @@ class HistoriqueService {
             allergie: false,
             diabete: false,
             hta: false,
-            tuberculose: '',
+            tuberculose: false,
             autres: '',
             antePersonelChirurgie: '',
             anteFamiliaux: ''

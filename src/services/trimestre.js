@@ -4,23 +4,10 @@ import store from "../store";
 import { firebase as config } from '../../config.json';
 import firebase from 'firebase/app'
 import historiquesPatient from "./historiquesPatient";
-// interface Formation {
-//     inscription: Boolean,
-//     started: Boolean,
-//     finished: Boolean,
-//     numberOfMonth: Number,
-//     professeurId: String,
-//     startDate: String,
-//     endDate: String,
-//     students_inscris: Array,  // ici l'etudiant a payé
-//     students_reserv: Array,   // ici il s'est juste inscrit à la session en ligne
-//     courseId: String,
-//     courseName: String
 
-// }
 
-class PatientService {
-    async getPatient(id) {
+class TrimestreService {
+    async getC(id) {
         let document;
         await db.collection('patients', ref => ref.where('id', '==', id)).get().then(querySnapshot => {
             document = querySnapshot.docs.map(doc => doc.data());
@@ -110,9 +97,6 @@ class PatientService {
         await db.collection('dossier', ref => ref.where('patientId', '==', id)).get()
             .then((querySnapshot) => {
                 dossiers = querySnapshot.docs.map(doc => doc.data());
-                dossiers.forEach(document => {
-                    document.date = new Date((document.date).toDate()).toLocaleDateString("fr-FR")
-                });
             });
         return dossiers;
     }
@@ -137,4 +121,4 @@ class PatientService {
 //     })
 
 
-export default new PatientService();
+export default new TrimestreService();
