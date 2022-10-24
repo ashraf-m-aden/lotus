@@ -25,7 +25,7 @@
               </i></a>
           </li>
 
-          <li class="onhover-dropdown">
+          <!-- <li class="onhover-dropdown">
             <i data-feather="bell">
               <feather type="bell"></feather>
             </i><span class="badge badge-primary pull-right notification-badge">3</span><span class="dot"></span>
@@ -78,7 +78,7 @@
               </li>
               <li class="txt-dark"><a href="#">All</a> notification</li>
             </ul>
-          </li>
+          </li> -->
 
           <li class="onhover-dropdown">
             <div class="media align-items-center">

@@ -49,17 +49,6 @@
             "icon": "bar-chart",
             "type": "link",
             "bookmark": true
-        },
-        {
-            "title": "Settings",
-            "icon": "settings",
-            "type": "sub",
-            "active": false,
-            "children": [{
-                "path": "/settings/profile",
-                "title": "Profile",
-                "type": "link"
-            }]
         }
     ]
 }

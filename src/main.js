@@ -24,13 +24,14 @@ import Toasted from 'vue-toasted';
 import { VueEditor } from "vue2-editor";
 import VueDropzone from 'vue2-dropzone';
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
+import moment from 'moment'
 
 Vue.component('Breadcrumbs', Breadcrumbs);
 Vue.use(VueFeather);
 Vue.component(PxCard.name, PxCard)
 Vue.use(VueApexCharts)
 Vue.component('apexchart', VueApexCharts)
-
+Vue.use(moment)
 import { fb, db } from '../db.js'
 
 Vue.use(fb)

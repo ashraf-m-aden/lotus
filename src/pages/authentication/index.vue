@@ -5,8 +5,10 @@
         <div class="row m-lg-0">
           <div class="col-md-5 p-0 card-left">
             <div class="card bg-primary">
-              <div class="svg-icon">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+              <img src="../../assets/images/lotus.png" alt="">
+              <!-- 
+              <div class="svg-icon bg-white text-center">
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 468.52 468.52"
                   style="enable-background: new 0 0 468.52 468.52" xml:space="preserve">
                   <g>
@@ -126,14 +128,14 @@
 		c1.923,0,3.84-0.728,5.303-2.192l-83.142-83.142L393.695,417.909z"></path>
                   </g>
                 </svg>
-              </div>
-              <div class="single-item">
+              </div> -->
+              <!-- <div class="single-item">
                 <div>
                   <div>
                     <h3>Lotus</h3>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="col-md-7 p-0 card-right">

@@ -15,7 +15,7 @@
                         <tr>
                             <td>Date:</td>
                             <td>
-                                {{ trimestreProp.date }}</td>
+                                {{ trimestreProp.date | formatDate }}</td>
                             <td>Nombre de mois de grossesse:</td>
                             <td>
                                 {{ trimestreProp.nbrMoisGrossesse }}</td>
@@ -257,6 +257,7 @@
 <script>
 import media from "@/components/media.vue";
 import trimestreService from "../../../services/trimestre";
+import moment from 'moment'
 
 export default {
     props: ['dossier', 'trimestreProp'],
@@ -274,9 +275,15 @@ export default {
 
     watch: {
         trimestreProp(newData, oldData) {
-            console.log(newData);
             this.trimestre = newData;
 
+        }
+    },
+    filters: {
+        'formatDate': function (value) {
+            if (value) {
+                return moment(String(value)).format('DD/MM/YYYY')
+            }
         }
     },
     methods: {

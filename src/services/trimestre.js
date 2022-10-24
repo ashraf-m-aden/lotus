@@ -27,8 +27,14 @@ class TrimestreService {
         await db.collection('trimestres', ref => ref.where('idDossier', '==', idDossier)).get().then(querySnapshot => {  // c'est comme ca que je retrouve les documents
             docs = querySnapshot.docs.map(doc => doc.data());
             docs.forEach(document => {
-                console.log(document.date);
-                document.date = new Date((document.date).toDate()).toLocaleDateString("fr-FR")
+                try {
+                    document.date = new Date((document.date).toDate())
+                    console.log(document.date);
+
+                } catch (error) {
+                    console.log(document.date);
+
+                }
 
             })
 
@@ -42,10 +48,22 @@ class TrimestreService {
         await db.collection('vat', ref => ref.where('idDossier', '==', idDossier)).get().then(querySnapshot => {  // c'est comme ca que je retrouve les documents
             document = querySnapshot.docs.map(doc => doc.data());
 
-            document[0].date1 = new Date((document.date1).toDate()).toLocaleDateString("fr-FR")
-            document[0].date2 = new Date((document.date2).toDate()).toLocaleDateString("fr-FR")
-            document[0].date3 = new Date((document.date3).toDate()).toLocaleDateString("fr-FR")
+            try {
+                document[0].date1 = new Date((document.date1).toDate()).toLocaleDateString("fr-FR")
+            } catch (error) {
+            }
+            try {
+                document[0].date2 = new Date((document.date2).toDate()).toLocaleDateString("fr-FR")
 
+            } catch (error) {
+
+            }
+            try {
+                document[0].date3 = new Date((document.date3).toDate()).toLocaleDateString("fr-FR")
+
+            } catch (error) {
+
+            }
         })
         return document[0];
 
@@ -59,7 +77,7 @@ class TrimestreService {
     }
     async generateTrimestres(idDossier, idPatient) {
         let trimestre = {
-            date: '',
+            date: new Date(),
             nbrMoisGrossesse: '',
             tensionArterielle: '',
             ta1: false,

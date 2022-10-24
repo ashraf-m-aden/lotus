@@ -79,7 +79,6 @@ export default {
     },
     async mounted() {
         this.trimestres = await trimestreService.getAllTrimestre(this.dossier.id);
-        console.log(this.trimestres);
     },
     watch: {
         async dossier(newDossier, oldDossier) {
@@ -93,9 +92,18 @@ export default {
             this.eye = !this.eye
         },
         async sauvegardeTrimestre(value) {
+            try {
+                value.date = Date.parse(value.date)
+                value.date = new Date((value.date))
+                console.log(value.date);
+
+            } catch (error) {
+                value.date = Date.parse(value.date)
+
+            }
             this.loading = true;
             await trimestreService.setTrimestre(value).then(async () => {
-                await trimestreService.getAllTrimestre(this.dossier.id);
+                this.trimestres = await trimestreService.getAllTrimestre(this.dossier.id);
                 this.loading = false
             })
         },
