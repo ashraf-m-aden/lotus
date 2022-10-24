@@ -99,7 +99,7 @@ class TrimestreService {
             colOuvert: false,
             autreQueCephalique: false,
             perteSang: false,
-            promontoireAccessible: '',
+            promontoireAccessible: false,
             observationSoins: '',
             echoId: '',
             nextRDV: '',

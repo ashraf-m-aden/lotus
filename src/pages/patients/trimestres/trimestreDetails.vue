@@ -229,7 +229,7 @@
                                     id=""></td>
                         </tr>
                         <tr>
-                            <td>ObservationSoins:</td>
+                            <td>Observation et Soins:</td>
                             <td style="width:100%" colspan="6"> <textarea style="width:100%"
                                     v-model="trimestre.observationSoins" class="form-control" type="text" />
                             </td>
