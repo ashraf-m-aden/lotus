@@ -19,7 +19,8 @@
                                             <feather type="heart"></feather>1er trimestre
                                         </template>
                                         <b-card-text>
-                                            <TrimestreDetails :dossier="dossier" :trimestre="trimestres[0]">
+                                            <TrimestreDetails @update="sauvegardeTrimestre" :dossier="dossier"
+                                                :trimestreProp="trimestres[0]">
                                             </TrimestreDetails>
                                         </b-card-text>
                                     </b-tab>
@@ -28,7 +29,8 @@
                                             <feather type="activity"></feather>2eme trimestre
                                         </template>
                                         <b-card-text>
-                                            <TrimestreDetails :dossier="dossier" :trimestre="trimestres[1]">
+                                            <TrimestreDetails @update="sauvegardeTrimestre" :dossier="dossier"
+                                                :trimestreProp="trimestres[1]">
                                             </TrimestreDetails>
                                         </b-card-text>
                                     </b-tab>
@@ -37,7 +39,8 @@
                                             <feather type="activity"></feather>3eme trimestre
                                         </template>
                                         <b-card-text>
-                                            <TrimestreDetails :dossier="dossier" :trimestre="trimestres[2]">
+                                            <TrimestreDetails @update="sauvegardeTrimestre" :dossier="dossier"
+                                                :trimestreProp="trimestres[2]">
                                             </TrimestreDetails>
                                         </b-card-text>
                                     </b-tab>
@@ -76,20 +79,26 @@ export default {
     },
     async mounted() {
         this.trimestres = await trimestreService.getAllTrimestre(this.dossier.id);
-
+        console.log(this.trimestres);
     },
     watch: {
         async dossier(newDossier, oldDossier) {
             this.loading = true;
             this.trimestres = await trimestreService.getAllTrimestre(newDossier.id);
             this.loading = false;
-
-        }
+        },
     },
     methods: {
         close() {
             this.eye = !this.eye
-        }
+        },
+        async sauvegardeTrimestre(value) {
+            this.loading = true;
+            await trimestreService.setTrimestre(value).then(async () => {
+                await trimestreService.getAllTrimestre(this.dossier.id);
+                this.loading = false
+            })
+        },
     },
 
 }

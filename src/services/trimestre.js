@@ -27,6 +27,7 @@ class TrimestreService {
         await db.collection('trimestres', ref => ref.where('idDossier', '==', idDossier)).get().then(querySnapshot => {  // c'est comme ca que je retrouve les documents
             docs = querySnapshot.docs.map(doc => doc.data());
             docs.forEach(document => {
+                console.log(document.date);
                 document.date = new Date((document.date).toDate()).toLocaleDateString("fr-FR")
 
             })

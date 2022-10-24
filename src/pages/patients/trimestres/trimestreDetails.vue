@@ -15,122 +15,122 @@
                         <tr>
                             <td>Date:</td>
                             <td>
-                                {{ trimestre.date }}</td>
+                                {{ trimestreProp.date }}</td>
                             <td>Nombre de mois de grossesse:</td>
                             <td>
-                                {{ trimestre.nbrMoisGrossesse }}</td>
+                                {{ trimestreProp.nbrMoisGrossesse }}</td>
                             <td>Tension artérielle:</td>
                             <td>
-                                {{ trimestre.tensionArterielle }}</td>
+                                {{ trimestreProp.tensionArterielle }}</td>
                             <td>Proteine urinaire:</td>
                             <td>
-                                {{ trimestre.proteineUrinaire }}</td>
+                                {{ trimestreProp.proteineUrinaire }}</td>
 
                         </tr>
                         <tr>
-                            <td>{{ trimestre.ta1Meaning }}:</td>
+                            <td>{{ trimestreProp.ta1Meaning }}:</td>
                             <td>
-                                <span v-show="trimestre.ta1" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.ta1">Non</span>
+                                <span v-show="trimestreProp.ta1" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.ta1">Non</span>
                             </td>
-                            <td>{{ trimestre.ta2Meaning }}:</td>
+                            <td>{{ trimestreProp.ta2Meaning }}:</td>
                             <td>
-                                <span v-show="trimestre.ta2" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.ta2">Non</span>
+                                <span v-show="trimestreProp.ta2" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.ta2">Non</span>
                             </td>
-                            <td>{{ trimestre.ta3Meaning }}:</td>
+                            <td>{{ trimestreProp.ta3Meaning }}:</td>
                             <td>
-                                <span v-show="trimestre.ta3" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.ta3">Non</span>
+                                <span v-show="trimestreProp.ta3" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.ta3">Non</span>
                             </td>
                             <td>Taux HB &lt; 6gr.:</td>
                             <td>
-                                <span v-show="trimestre.tauxHB" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.tauxHB">Non</span>
+                                <span v-show="trimestreProp.tauxHB" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.tauxHB">Non</span>
                             </td>
                         </tr>
 
                         <tr>
                             <td>Anémie signe clinique:</td>
                             <td>
-                                <span v-show="trimestre.anemieSigneClinique" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.anemieSigneClinique">Non</span>
+                                <span v-show="trimestreProp.anemieSigneClinique" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.anemieSigneClinique">Non</span>
                             </td>
                             <td>Poids:</td>
                             <td>
-                                {{ trimestre.poids }}
+                                {{ trimestreProp.poids }}
                             </td>
                             <td>Prise de poids anormale:</td>
                             <td>
-                                <span v-show="trimestre.prisePoidsAnormale" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.prisePoidsAnormale">Non</span>
+                                <span v-show="trimestreProp.prisePoidsAnormale" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.prisePoidsAnormale">Non</span>
                             </td>
                         </tr>
                         <tr>
                             <td>Hauteur utérine:</td>
                             <td>
-                                {{ trimestre.hauteurUterine }}
+                                {{ trimestreProp.hauteurUterine }}
                             </td>
                             <td>Hauteur utérine anormale:</td>
                             <td>
-                                <span v-show="trimestre.hauteurUterineAnormale" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.hauteurUterineAnormale">Non</span>
+                                <span v-show="trimestreProp.hauteurUterineAnormale" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.hauteurUterineAnormale">Non</span>
                             </td>
                             <td>MAF et BCF absents:</td>
                             <td>
-                                <span v-show="trimestre.mafBcf" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.mafBcf">Non</span>
+                                <span v-show="trimestreProp.mafBcf" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.mafBcf">Non</span>
                             </td>
                         </tr>
                         <tr>
                             <td>Palpation:</td>
                             <td>
-                                {{ trimestre.palpation }}
+                                {{ trimestreProp.palpation }}
                             </td>
                             <td>Présentation vicieuse:</td>
                             <td>
-                                <span v-show="trimestre.presentationVicieuse" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.presentationVicieuse">Non</span>
+                                <span v-show="trimestreProp.presentationVicieuse" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.presentationVicieuse">Non</span>
                             </td>
                             <td>Toucher vaginal:</td>
                             <td>
-                                {{ trimestre.toucherVaginal }}
+                                {{ trimestreProp.toucherVaginal }}
                             </td>
                         </tr>
                         <tr>
                             <td>Col ouvert:</td>
                             <td>
-                                <span v-show="trimestre.colOuvert" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.colOuvert">Non</span>
+                                <span v-show="trimestreProp.colOuvert" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.colOuvert">Non</span>
                             </td>
                             <td>Autre que Céphalique:</td>
                             <td>
-                                <span v-show="trimestre.autreQueCephalique" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.autreQueCephalique">Non</span>
+                                <span v-show="trimestreProp.autreQueCephalique" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.autreQueCephalique">Non</span>
                             </td>
                             <td>Perte de sang:</td>
                             <td>
-                                <span v-show="trimestre.perteSang" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.perteSang">Non</span>
+                                <span v-show="trimestreProp.perteSang" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.perteSang">Non</span>
                             </td>
 
                             <td>Promontoire accessible:</td>
                             <td>
-                                <span v-show="trimestre.promontoireAccessible" class="surveiller">Oui</span>
-                                <span v-show="!trimestre.promontoireAccessible">Non</span>
+                                <span v-show="trimestreProp.promontoireAccessible" class="surveiller">Oui</span>
+                                <span v-show="!trimestreProp.promontoireAccessible">Non</span>
                             </td>
                         </tr>
                         <tr>
                             <td>ObservationSoins:</td>
-                            <td>{{ trimestre.observationSoins }}</td>
+                            <td>{{ trimestreProp.observationSoins }}</td>
                         </tr>
                         <tr>
                             <td>Echographie:</td>
-                            <td>{{ trimestre.echoId }}</td>
+                            <td>{{ trimestreProp.echoId }}</td>
                         </tr>
                         <tr>
                             <td>Prochain rendez-vous:</td>
-                            <td>{{ trimestre.nextRDV }}</td>
+                            <td>{{ trimestreProp.nextRDV }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -138,29 +138,31 @@
                     <tbody>
                         <tr>
                             <td>Date:</td>
-                            <td><input type="text" name="" class="form-control" v-model="trimestre.date" id=""></td>
+                            <td colspan="2"><input type="date" name="" class="form-control" v-model="trimestre.date"
+                                    id=""></td>
 
                             <td>Nombre de mois de grossesse:</td>
                             <td><input type="text" name="" class="form-control" v-model="trimestre.nbrMoisGrossesse"
                                     id=""></td>
 
                             <td>Tension artérielle:</td>
-                            <td><input type="text" name="" class="form-control" v-model="trimestre.tensionArterielle"
-                                    id=""></td>
-
-                            <td>Proteine urinaire:</td>
-                            <td><input type="text" name="" class="form-control" v-model="trimestre.proteineUrinaire"
-                                    id=""></td>
-
+                            <td colspan="2"><input type="text" name="" class="form-control"
+                                    v-model="trimestre.tensionArterielle" id=""></td>
 
                         </tr>
                         <tr>
+                            <td>Proteine urinaire:</td>
+                            <td colspan="2"><input type="text" name="" class="form-control"
+                                    v-model="trimestre.proteineUrinaire" id=""></td>
                             <td>{{ trimestre.ta1Meaning }}:</td>
                             <td><input type="checkbox" name="" class="btn btn-group form-control"
                                     v-model="trimestre.ta1" :checked="trimestre.ta1" id=""></td>
                             <td>{{ trimestre.ta2Meaning }}:</td>
                             <td><input type="checkbox" name="" class="btn btn-group form-control"
                                     v-model="trimestre.ta2" :checked="trimestre.ta2" id=""></td>
+
+                        </tr>
+                        <tr>
                             <td>{{ trimestre.ta3Meaning }}:</td>
                             <td><input type="checkbox" name="" class="btn btn-group form-control"
                                     v-model="trimestre.ta3" :checked="trimestre.ta3" id=""></td>
@@ -168,7 +170,6 @@
                             <td><input type="checkbox" name="" class="btn btn-group form-control"
                                     v-model="trimestre.tauxHB" :checked="trimestre.tauxHB" id=""></td>
                         </tr>
-
                         <tr>
                             <td>Anémie signe clinique:</td>
                             <td><input type="checkbox" name="" class="btn btn-group form-control"
@@ -184,8 +185,8 @@
                         </tr>
                         <tr>
                             <td>Hauteur utérine:</td>
-                            <td><input type="text" name="" class="form-control" v-model="trimestre.hauteurUterine"
-                                    id=""></td>
+                            <td colspan="3"><input type="text" name="" class="form-control"
+                                    v-model="trimestre.hauteurUterine" id=""></td>
 
                             <td>Hauteur utérine anormale:</td>
                             <td><input type="checkbox" name="" class="btn btn-group form-control"
@@ -197,7 +198,8 @@
                         </tr>
                         <tr>
                             <td>Palpation:</td>
-                            <td><input type="text" name="" class="form-control" v-model="trimestre.palpation" id="">
+                            <td colspan="2"><input type="text" name="" class="form-control"
+                                    v-model="trimestre.palpation" id="">
                             </td>
 
                             <td>Présentation vicieuse:</td>
@@ -234,11 +236,13 @@
                         </tr>
                         <tr>
                             <td>Echographie:</td>
-                            <td><input type="text" name="" class="form-control" v-model="trimestre.echoId" id=""></td>
+                            <td colspan="5"><input type="text" name="" class="form-control" v-model="trimestre.echoId"
+                                    id=""></td>
                         </tr>
                         <tr>
                             <td>Prochain rendez-vous:</td>
-                            <td><input type="text" name="" class="form-control" v-model="trimestre.nextRDV" id=""></td>
+                            <td colspan="5"><input type="text" name="" class="form-control" v-model="trimestre.nextRDV"
+                                    id=""></td>
                         </tr>
                     </tbody>
                 </table>
@@ -265,11 +269,12 @@ export default {
         }
     },
     mounted() {
-        console.log(this.trimestreProp);
         this.trimestre = this.trimestreProp;
     },
+
     watch: {
         trimestreProp(newData, oldData) {
+            console.log(newData);
             this.trimestre = newData;
 
         }
@@ -277,10 +282,8 @@ export default {
     methods: {
 
         async sauvegardeTrimestre() {
-            await trimestreService.setTrimestre(this.trimestre).then(async () => {
-                await trimestreService.getAllTrimestre(this.dossier.id);
-                this.trimestreModif = !this.trimestreModif;
-            })
+            this.$emit('update', this.trimestre)
+            this.trimestreModif = !this.trimestreModif;
         },
 
     },
