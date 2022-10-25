@@ -1,23 +1,14 @@
 <template>
   <div class="col-xl-6 xl-100">
-    <px-card title="Employee status">
+    <px-card title="Données">
       <div class="card-body">
         <div class="user-status table-responsive products-table">
-          <b-table
-            show-empty
-            :items="employee"
-            :fields="tablefields"
-            :filter="filter"
-            :current-page="currentPage"
-            :per-page="perPage"
-            @filtered="onFiltered"
-          >
+          <b-table show-empty :items="employee" :fields="tablefields" :filter="filter" :current-page="currentPage"
+            :per-page="perPage" @filtered="onFiltered">
             <template #cell(image)="field">
               <div class="align-middle image-sm-size">
-                <img
-                  class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded"
-                  :src="getImgUrl(field.item.image)"
-                />
+                <img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded"
+                  :src="getImgUrl(field.item.image)" />
                 <div class="d-inline-block">
                   <h6>
                     {{ field.item.name }}
@@ -28,11 +19,8 @@
             </template>
             <template #cell(skillLevel)="field">
               <div>
-                <b-progress
-                  :value="field.item.skillLevel"
-                  :variant="field.item.type"
-                  class="sm-progress-bar"
-                ></b-progress>
+                <b-progress :value="field.item.skillLevel" :variant="field.item.type" class="sm-progress-bar">
+                </b-progress>
               </div>
             </template>
           </b-table>
@@ -60,7 +48,7 @@ export default {
       pageOptions: [5],
     };
   },
-  created() {},
+  created() { },
   computed: {
     sortOptions() {
       // Create an options list from our fields
@@ -89,4 +77,5 @@ export default {
 </script>
 
 <style>
+
 </style>

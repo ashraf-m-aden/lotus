@@ -1,5 +1,5 @@
 import axios from 'axios';
-import order from '../../data/order.json';
+import order from '../../data/employee.json';
 
 import config from '../../../config.json'
 const ax = axios.create({

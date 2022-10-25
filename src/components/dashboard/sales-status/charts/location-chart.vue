@@ -1,14 +1,9 @@
 <template>
   <div class="col-xl-3 col-sm-6 xl-50">
     <div class="order-graph sm-order-space">
-      <h6>Sales By Location</h6>
-      <apexchart
-        type="pie"
-        height="220"
-        :options="chartOptions"
-        :series="series"
-      ></apexchart>
-      <div class="order-graph-bottom sales-location">
+      <h6>Données exemples</h6>
+      <apexchart type="pie" height="220" :options="chartOptions" :series="series"></apexchart>
+      <!-- <div class="order-graph-bottom sales-location">
         <div class="media">
           <div class="order-shape-primary"></div>
           <div class="media-body">
@@ -57,7 +52,7 @@
             </h6>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

@@ -1,15 +1,10 @@
 <template>
   <div class="col-xl-3 col-sm-6 xl-50">
     <div class="order-graph">
-      <h6>Orders By Location</h6>
+      <h6>Données exemples</h6>
       <!-- order chart -->
-      <apexchart
-        type="donut"
-        :options="chartOptions"
-        height="220"
-        :series="series"
-      ></apexchart>
-      <div class="order-graph-bottom">
+      <apexchart type="donut" :options="chartOptions" height="220" :series="series"></apexchart>
+      <!-- <div class="order-graph-bottom">
         <div class="media">
           <div class="order-color-primary"></div>
           <div class="media-body">
@@ -58,7 +53,7 @@
           </div>
           
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

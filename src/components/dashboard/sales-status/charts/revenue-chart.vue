@@ -1,14 +1,9 @@
 <template>
   <div class="col-xl-6 xl-100">
     <div class="order-graph xl-space">
-      <h6>Revenue for last month</h6>
+      <h6>Données exemples</h6>
       <div class="ct-4 flot-chart-container">
-        <apexchart
-          type="area"
-          height="400"
-          :options="chartOptions"
-          :series="series"
-        ></apexchart>
+        <apexchart type="area" height="400" :options="chartOptions" :series="series"></apexchart>
       </div>
     </div>
   </div>
@@ -33,7 +28,7 @@ export default {
           },
           toolbar: {
             show: false
-          } 
+          }
         },
         dataLabels: {
           enabled: false
@@ -41,7 +36,7 @@ export default {
         stroke: {
           curve: "smooth"
         },
-        colors:["#F98085"],
+        colors: ["#F98085"],
         title: {
           show: false
         },

@@ -1,31 +1,31 @@
 <template>
   <div class="col-xl-6 xl-100">
-    <px-card title="Latest Orders">
+    <px-card title="Rendez vous aujourd'hui">
       <div slot="with-padding">
         <div class="table-responsive datatable-vue user-status">
-          <b-table
-            show-empty
-            :items="order"
-            :fields="tablefields"
-            :filter="filter"
-            :current-page="currentPage"
-            :per-page="perPage"
-            @filtered="onFiltered"
-          >
+          <b-table show-empty :items="order" :fields="tablefields" :filter="filter" :current-page="currentPage"
+            :per-page="perPage" @filtered="onFiltered">
             <template :scope="order" #cell(paymentMethod)="field">
-               <span v-if="field.item.paymentMethod == 'Bank Transfer'" class="font-secondary">{{ field.item.paymentMethod}}</span>
-                <span v-if="field.item.paymentMethod == 'Ewallets'" class="font-primary">{{ field.item.paymentMethod}}</span>
-                <span v-if="field.item.paymentMethod == 'Cash'" class="font-primary">{{ field.item.paymentMethod}}</span>
-                <span v-if="field.item.paymentMethod == 'Direct Deposit'" class="font-success">{{ field.item.paymentMethod}}</span>
-                <span v-if="field.item.paymentMethod == 'Bank Transfers'" class="font-success">{{ field.item.paymentMethod}}</span>
-                <span v-if="field.item.paymentMethod == 'Mastercard'" class="font-primary">{{ field.item.paymentMethod}}</span>
+              <span v-if="field.item.paymentMethod == 'Bank Transfer'" class="font-secondary">{{
+                  field.item.paymentMethod
+              }}</span>
+              <span v-if="field.item.paymentMethod == 'Ewallets'" class="font-primary">{{
+                  field.item.paymentMethod
+              }}</span>
+              <span v-if="field.item.paymentMethod == 'Cash'" class="font-primary">{{ field.item.paymentMethod }}</span>
+              <span v-if="field.item.paymentMethod == 'Direct Deposit'" class="font-success">{{
+                  field.item.paymentMethod
+              }}</span>
+              <span v-if="field.item.paymentMethod == 'Bank Transfers'" class="font-success">{{
+                  field.item.paymentMethod
+              }}</span>
+              <span v-if="field.item.paymentMethod == 'Mastercard'" class="font-primary">{{
+                  field.item.paymentMethod
+              }}</span>
             </template>
           </b-table>
         </div>
 
-        <router-link class="btn btn-primary" to="/sales/order"
-          >View All Orders</router-link
-        >
       </div>
     </px-card>
   </div>
@@ -37,10 +37,9 @@ export default {
   data() {
     return {
       tablefields: [
-        { key: "orderId", label: "OrderID", sortable: false },
-        { key: "total", label: "Order Total", sortable: false },
-        { key: "paymentMethod", label: "Payment Method", sortable: false },
-        { key: "status", label: "status", sortable: false }
+        { key: "id", label: "Numero de dossier", sortable: false },
+        { key: "name", label: "Nom", sortable: false },
+        { key: "age", label: "Age", sortable: false },
       ],
       filter: null,
       totalRows: this.order.length,
@@ -49,7 +48,7 @@ export default {
       pageOptions: [5]
     };
   },
-  created() {},
+  created() { },
   computed: {
     sortOptions() {
       // Create an options list from our fields

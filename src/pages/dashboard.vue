@@ -3,18 +3,18 @@
     <!-- Container-fluid starts-->
     <div class="container-fluid">
       <div class="page-header">
-        <Breadcrumbs main="" title="Dashboard" />
+        <Breadcrumbs main="" title="Tableau de bord" />
       </div>
       <Widget></Widget>
       <div class="row">
-        <MarketChart></MarketChart>
+        <!-- <MarketChart></MarketChart> -->
         <OrderTable :order="orderList"></OrderTable>
       </div>
-      <SecondWidget></SecondWidget>
+      <!-- <SecondWidget></SecondWidget> -->
       <div class="row">
         <BuySellChart></BuySellChart>
-        <GoodsReturnTable :data="orderList"></GoodsReturnTable>
-        <EmployeeStatus :employee="employee"></EmployeeStatus>
+        <!-- <GoodsReturnTable :data="orderList"></GoodsReturnTable> -->
+        <!-- <EmployeeStatus :employee="employee"></EmployeeStatus> -->
         <SalesStatus></SalesStatus>
       </div>
     </div>
@@ -57,6 +57,6 @@ export default {
       employee: "employee/getEmployee"
     })
   },
-  mounted() {}
+  mounted() { }
 };
 </script>

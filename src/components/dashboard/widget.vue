@@ -10,9 +10,9 @@
               </div>
             </div>
             <div class="media-body col-8">
-              <span class="m-0">Earnings</span>
+              <span class="m-0">Chiffre d'affaires</span>
               <h3 class="mb-0">
-                $ <span class="counter">6659</span><small> This Month</small>
+                FDJ <span class="counter">245000</span><small> ce mois</small>
               </h3>
             </div>
           </div>
@@ -29,9 +29,9 @@
               </div>
             </div>
             <div class="media-body col-8">
-              <span class="m-0">Products</span>
+              <span class="m-0">Nombre de consultations</span>
               <h3 class="mb-0">
-                $ <span class="counter">9856</span><small> This Month</small>
+                <span class="counter">158</span><small> ce mois</small>
               </h3>
             </div>
           </div>
@@ -48,9 +48,9 @@
               </div>
             </div>
             <div class="media-body col-8">
-              <span class="m-0">Messages</span>
+              <span class="m-0">Nombre d'accouchements</span>
               <h3 class="mb-0">
-                $ <span class="counter">893</span><small> This Month</small>
+                <span class="counter">16</span><small> ce mois</small>
               </h3>
             </div>
           </div>
@@ -67,9 +67,9 @@
               </div>
             </div>
             <div class="media-body col-8">
-              <span class="m-0">New Vendors</span>
+              <span class="m-0">Nombre de patientes</span>
               <h3 class="mb-0">
-                $ <span class="counter">45631</span><small> This Month</small>
+                <span class="counter">57</span><small> ce mois</small>
               </h3>
             </div>
           </div>
@@ -81,7 +81,7 @@
 
 <script>
 export default {
-    name: "widget"
+  name: "widget"
 };
 </script>
 
