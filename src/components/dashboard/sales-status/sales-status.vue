@@ -1,6 +1,6 @@
 <template>
   <div class="col-sm-12">
-    <px-card title="Sales Status">
+    <px-card title="Medicaments">
       <div class="card-body">
         <div class="row">
           <!-- Order chart -->
@@ -24,14 +24,12 @@ export default {
   components: {
     orderChart,
     locationChart,
-    revenueChart
+    revenueChart,
   },
   data() {
     return {};
-  }
+  },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

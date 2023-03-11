@@ -15,8 +15,7 @@
                   <b-modal
                     id="modal-1"
                     title="Confirmation"
-                    @ok="deleteBatchRow"
-                  >
+                    @ok="deleteBatchRow">
                     <p class="my-4">Are you sure!</p>
                   </b-modal>
                 </div>
@@ -47,8 +46,7 @@
                   :current-page="currentPage"
                   :per-page="perPage"
                   @filtered="onFiltered"
-                  @row-selected="rowSelected"
-                >
+                  @row-selected="rowSelected">
                   <template v-slot:head(delete)>
                     <b-button
                       variant="danger"
@@ -74,8 +72,7 @@
                   :total-rows="totalRows"
                   :per-page="perPage"
                   aria-controls="my-table"
-                  class="mt-4"
-                ></b-pagination>
+                  class="mt-4"></b-pagination>
               </b-col>
             </div>
           </div>
@@ -96,7 +93,6 @@ export default {
         { key: "name", label: "Nom", sortable: true },
         { key: "email", label: "Email", sortable: false },
         { key: "lastLogin", label: "Derniere connection", sortable: false },
-        { key: "action" },
       ],
       filter: null,
       totalRows: 1,
